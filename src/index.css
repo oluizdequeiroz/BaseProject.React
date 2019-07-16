@@ -1,0 +1,22 @@
+.content-centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%)
+}
+
+.panel-form {
+    width: 300px;
+}
+
+@media only screen and (max-width: 350px) {
+    .content-centered {
+        position: absolute;
+        top: 180px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    .panel-form {
+        width: 90%;
+    }
+}
