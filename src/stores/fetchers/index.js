@@ -5,6 +5,8 @@ const API = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_API_DE
 
 export default function* _fetch({ request }) {
     const { endpoint, returnReduceKey, param = '', method = 'GET', withProccess = false, msgProccess, withSuccessedAlert = false, msgSuccessedAlert, withWarningAlert = true, msgWarningAlert, withFailedAlert = true, msgFailedAlert = 'Tente revalidar a sessão para continuar usando o sistema.', withErrorAlert = true, msgErrorAlert = 'Erro interno no serviço.' } = request;
+    console.info(`Api: ${API}`);
+    console.info(`Endpoint: ${endpoint}`);
 
     try {
         const url = `${API}/${endpoint}`;
