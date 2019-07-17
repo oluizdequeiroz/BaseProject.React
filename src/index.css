@@ -1,22 +1,25 @@
 .content-centered {
-    position: absolute;
-    top: 50%;
+    position: fixed;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%)
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.panel-form {
-    width: 300px;
-}
-
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 820px) {
     .content-centered {
-        position: absolute;
-        top: 180px;
+        position: fixed;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
+        top: 50%;
+        width: 500px;
     }
-    .panel-form {
+}
+
+
+@media only screen and (max-width: 530px) {
+    .content-centered {
+        position: fixed;
+        left: 50%;
+        top: 50%;
         width: 90%;
     }
 }

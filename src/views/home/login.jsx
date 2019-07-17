@@ -32,7 +32,7 @@ class Login extends Component {
     render() {
 
         return (
-            <div className="content-centered panel-form">
+            <div className="content-centered">
                 <div className="card">
                     <div className="card-header card-header-primary">
                         <h4 className="card-title">Entrada <Loading /></h4>
