@@ -15,8 +15,7 @@ export default function* _fetch({ request }) {
             headers: {
                 'Content-type': 'application/json',
                 'Authorization': `Bearer ${sessionStorage.getItem('session') !== null ? JSON.parse(sessionStorage.getItem('session')).token : ''}`
-            },
-            mode: 'no-cors'
+            }
         };
         if (method === 'POST' || method === 'PUT') params = { ...params, body: JSON.stringify(param) };
 
