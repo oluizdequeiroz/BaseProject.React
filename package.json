@@ -1,7 +1,9 @@
 {
   "name": "baseproject.react",
   "version": "0.1.0",
+  "author": "Luiz de Queiroz",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -48,10 +50,7 @@
     "type": "git",
     "url": "git+https://github.com/oluizdequeiroz/BaseProject.React.git"
   },
-  "author": "Luiz de Queiroz",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/oluizdequeiroz/BaseProject.React/issues"
-  },
-  "homepage": "https://github.com/oluizdequeiroz/BaseProject.React#readme"
+  }
 }
