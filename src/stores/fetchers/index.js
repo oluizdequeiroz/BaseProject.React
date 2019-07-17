@@ -29,14 +29,14 @@ export default function* _fetch({ request }) {
         } else {
             if (response.status === 401) {
                 // se houver alguma consulta na página inicial após entrar no sistema /// TODO
-                if (window.location.pathname === '') {
+                if (window.location.hash === '') {
                     sessionStorage.clear();
                     yield put({ type: 'clear_values' });
                 }
 
                 if (withFailedAlert) yield put({ type: 'set_value', payload: { key: 'sweetalert', value: { title: 'Sessão inválida para a operação ou expirada!', message: msgFailedAlert, type: 'info' } } });
 
-                window.location.hash = '#/';
+                window.location.hash = '/';
 
                 json = {};
             } else {

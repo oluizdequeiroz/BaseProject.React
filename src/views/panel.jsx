@@ -8,7 +8,7 @@ class Panel extends Component {
     }
 
     componentDidMount = () => {
-        if (window.location.pathname !== '/') window.location.pathname = '/';
+        if (window.location.hash !== '/') window.location.hash = '/';
     }
 
     blurNavBarToggler = () => this.setState({ tshow: false });

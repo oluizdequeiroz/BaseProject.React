@@ -14,12 +14,14 @@ class Index extends Component {
             setValue('session', session);
         }
 
-        if (window.location.pathname !== '/') window.location.pathname = '/';
+        if (window.location.hash !== '/') {
+            window.location.hash = '/';
+        }
     }
 
     componentDidUpdate() {
         const { session, sweetalert } = this.props;
-        
+
         if (session) {
             if (session.status === 16) {
                 sessionStorage.setItem('session', JSON.stringify(session));
