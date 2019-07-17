@@ -37,8 +37,21 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "redux-devtools": "^3.5.0",
     "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.4.0"
-  }
+  },
+  "description": "Projeto react de base com Material Design",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oluizdequeiroz/BaseProject.React.git"
+  },
+  "author": "Luiz de Queiroz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oluizdequeiroz/BaseProject.React/issues"
+  },
+  "homepage": "https://github.com/oluizdequeiroz/BaseProject.React#readme"
 }
