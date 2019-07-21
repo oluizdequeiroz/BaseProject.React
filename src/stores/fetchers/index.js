@@ -10,14 +10,15 @@ export default function* _fetch({ request }) {
 
     try {
         const url = `${API}/${endpoint}`;
+        const body = JSON.stringify(param);
         var params = {
             method,
             headers: {
-                'Content-type': 'application/json',
-                'Authorization': `Bearer ${sessionStorage.getItem('session') !== null ? JSON.parse(sessionStorage.getItem('session')).token : ''}`
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${sessionStorage.getItem('session') !== null ? JSON.parse(sessionStorage.getItem('session')).retorno : ''}`
             }
         };
-        if (method === 'POST' || method === 'PUT') params = { ...params, body: JSON.stringify(param) };
+        if (method === 'POST' || method === 'PUT') params = { ...params, body };
 
         const response = yield fetch(url, params);
         let json = null;
@@ -46,13 +47,14 @@ export default function* _fetch({ request }) {
         }
 
         yield put({ type: 'set_value', payload: { key: returnReduceKey, value: json } });
-        if (json.status < 0) {
-            if (withWarningAlert) yield put({ type: 'set_value', payload: { key: 'sweetalert', value: { title: json.message, message: msgWarningAlert, type: 'warning' } } });
+        if (!json.sucesso) {
+            if (withWarningAlert) yield put({ type: 'set_value', payload: { key: 'sweetalert', value: { title: json.mensagens[0], message: `${msgWarningAlert}\n${json.mensagens.join('\n')}`, type: 'warning' } } });
 
-            console.error(json.message);
+            console.error(json.mensagens);
         } else {
-
-            if (withSuccessedAlert) yield put({ type: 'set_value', payload: { key: 'sweetalert', value: { title: json.message, message: msgSuccessedAlert, type: 'success' } } });
+            if (withSuccessedAlert) yield put({ type: 'set_value', payload: { key: 'sweetalert', value: { title: json.mensagens[0], message: `${msgSuccessedAlert}\n${json.mensagens.join('\n')}`, type: 'success' } } });
+            
+            console.error(json.mensagens);
         }
 
         if (withProccess)

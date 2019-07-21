@@ -7,6 +7,7 @@ import { bindDefault } from '../stores/binders';
 class Index extends Component {
 
     componentDidMount() {
+        debugger;
         const { setValue } = this.props;
 
         const session = JSON.parse(sessionStorage.getItem('session'));
@@ -20,10 +21,11 @@ class Index extends Component {
     }
 
     componentDidUpdate() {
+        debugger;
         const { session, sweetalert } = this.props;
 
         if (session) {
-            if (session.status === 16) {
+            if (session.sucesso) {
                 sessionStorage.setItem('session', JSON.stringify(session));
             }
         }
@@ -35,7 +37,7 @@ class Index extends Component {
 
     render() {
         const { session } = this.props;
-
+        debugger;
         return session ? this.props.children : <Login />;
     }
 }

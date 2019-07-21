@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { bindReduxForm } from '../../stores/binders';
-import { post } from '../../stores/actions';
 
 import Loading from '../../components/loading';
 import Input from '../../components/input';
 
 import { Field } from 'redux-form';
+import { post } from '../../stores/actions';
 
 function login(values) {
 
