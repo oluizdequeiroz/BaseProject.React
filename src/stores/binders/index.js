@@ -3,22 +3,28 @@ import { reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 
+const selects = reducerKeys => state => {
+    let reducers = {};
+    reducerKeys.forEach(key => reducers[key] = state.reducers[key]);
+    return reducers;
+};
+
 export function bindDefault(...reducerKeys) {
-    const selectState = state => {
-        let reducers = {};
-        reducerKeys.forEach(key => reducers[key] = state.reducers[key]);
-        return reducers;
-    };
-
     const selectDispatch = dispatch => bindActionCreators({ ...Actions }, dispatch);
+    return (formComponent) => connect(selects(reducerKeys), selectDispatch)(formComponent);
+}
 
-    return (formComponent) => connect(selectState, selectDispatch)(formComponent);
+export function bindWithActions(...reducerKeys) {
+    return (...actions) => {
+        const selectDispatch = dispatch => bindActionCreators({ ...Actions, ...actions }, dispatch);
+        return (formComponent) => connect(selects(reducerKeys), selectDispatch)(formComponent);
+    }
 }
 
 export function bindReduxForm(...reducerKeys) {
     const selectState = state => {
         let reducers = {};
-        reducerKeys.forEach(key => reducers[key] = state.reducers.reducerKeys[key]);
+        reducerKeys.forEach(key => reducers[key] = state.reducers[key]);
         return reducers;
     };
 

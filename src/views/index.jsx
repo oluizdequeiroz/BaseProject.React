@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import swal from 'sweetalert2';
 
 import Login from './home/login';
 import { bindDefault } from '../stores/binders';
@@ -20,16 +19,12 @@ class Index extends Component {
     }
 
     componentDidUpdate() {
-        const { session, sweetalert } = this.props;
+        const { session } = this.props;
 
         if (session) {
             if (session.sucesso) {
                 sessionStorage.setItem('session', JSON.stringify(session));
             }
-        }
-
-        if (sweetalert) {
-            swal.fire(sweetalert.title, sweetalert.message, sweetalert.type);
         }
     }
 
@@ -40,4 +35,4 @@ class Index extends Component {
     }
 }
 
-export default bindDefault('session', 'sweetalert')(Index);
+export default bindDefault('session')(Index);

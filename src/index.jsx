@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import Index from './views';
 import Menu from './views/menu';
 import Panel from './views/panel';
+import Swal from './components/swal';
 
 import routes from './views/routes';
 
@@ -27,6 +28,7 @@ ReactDOM.render(
                         )}
                     </Switch>
                 </Panel>
+                <Swal />
             </Index>
             {process.env.NODE_ENV !== 'production' ? <DevTools /> : ''}
         </Router>

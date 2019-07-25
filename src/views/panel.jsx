@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { bindDefault } from '../stores/binders';
 
 class Panel extends Component {
 
@@ -11,14 +12,15 @@ class Panel extends Component {
         if (window.location.hash !== '/') window.location.hash = '/';
     }
 
-    blurNavBarToggler = () => this.setState({ tshow: false });
     clickNavBarToggler = () => this.setState({ tshow: !this.state.tshow });
-
-    blurNavItemDropdown = () => this.setState({ ishow: false });
-    clickNavItemDropdown = () => this.setState({ ishow: !this.state.ishow });
+    blurNavBarToggler = () => this.setState({ tshow: false });
+    onSair = () => {
+        const { clearValues } = this.props;
+        sessionStorage.clear();
+        clearValues();
+    }
 
     render() {
-        const { ishow } = this.state;
         const { tshow } = this.state;
 
         if (tshow) document.getElementsByTagName('html')[0].classList.add('nav-open');
@@ -39,18 +41,7 @@ class Panel extends Component {
                         </button>
                         <div className="collapse navbar-collapse justify-content-end">
                             <ul className="navbar-nav">
-                                <li className={`nav-item dropdown ${ishow && 'show'}`} onClick={this.clickNavItemDropdown} onBlur={this.blurNavItemDropdown}>
-                                    <a className="nav-link" href="#/" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i className="material-icons">person</i>
-                                        <p className="d-lg-none d-md-block">Conta</p>
-                                    </a>
-                                    <div className={`dropdown-menu dropdown-menu-right ${ishow && 'show'}`} aria-labelledby="navbarDropdownProfile">
-                                        <a className="dropdown-item" href="#/">Perfil</a>
-                                        <a className="dropdown-item" href="#/">Configurações</a>
-                                        <div className="dropdown-divider"></div>
-                                        <a className="dropdown-item" href="#/">Sair</a>
-                                    </div>
-                                </li>
+                                <a className="btn btn-danger" href="#/" onClick={this.onSair}>Sair</a>
                             </ul>
                         </div>
                     </div>
@@ -67,4 +58,4 @@ class Panel extends Component {
     }
 }
 
-export default Panel;
+export default bindDefault()(Panel);

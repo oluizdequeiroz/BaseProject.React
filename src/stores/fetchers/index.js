@@ -1,68 +1,36 @@
 import { put } from 'redux-saga/effects';
-// import swal from 'sweetalert2';
 
 const API = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_API_DEVELOP : process.env.REACT_APP_API_PRODUCT;
 
-export default function* _fetch({ request }) {
-    const { endpoint, returnReduceKey, param = '', method = 'GET', withProccess = false, msgProccess, withSuccessedAlert = false, msgSuccessedAlert, withWarningAlert = true, msgWarningAlert, withFailedAlert = true, msgFailedAlert = 'Tente revalidar a sessão para continuar usando o sistema.', withErrorAlert = true, msgErrorAlert = 'Erro interno no serviço.' } = request;
-    console.info(`Api: ${API}`);
-    console.info(`Endpoint: ${endpoint}`);
+export default function* _fetch(endpoint,
+    returnReduceKey,
+    parametros = {},
+    treatment,
+    config,
+    callback) {
 
     try {
         const url = `${API}/${endpoint}`;
-        const body = JSON.stringify(param);
-        var params = {
-            method,
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${sessionStorage.getItem('session') !== null ? JSON.parse(sessionStorage.getItem('session')).retorno : ''}`
+        const data = yield fetch(url, parametros);
+        const jsonData = yield data.json();
+        if (data.status < 200 || data.status >= 300) {
+            console.log(jsonData);
+            if (jsonData !== null && typeof jsonData === 'object' && jsonData.StackTraceString && jsonData.Message && jsonData.Message !== 'Unexpected end of JSON input') {
+                const err = jsonData;
+
+                yield put({ type: 'fetch_failed', payload: err });
             }
-        };
-        if (method === 'POST' || method === 'PUT') params = { ...params, body };
 
-        const response = yield fetch(url, params);
-        let json = null;
-
-        if (withProccess) yield put({ type: 'set_value', payload: { key: 'loading', value: { in: true, text: msgProccess } } });
-
-        if (response.ok) {
-            if (response.status === 200)
-                json = yield response.json();
-        } else {
-            if (response.status === 401) {
-                // se houver alguma consulta na página inicial após entrar no sistema /// TODO
-                if (window.location.hash === '') {
-                    sessionStorage.clear();
-                    yield put({ type: 'clear_values' });
-                }
-
-                if (withFailedAlert) yield put({ type: 'set_value', payload: { key: 'sweetalert', value: { title: 'Sessão inválida para a operação ou expirada!', message: msgFailedAlert, type: 'info' } } });
-
-                window.location.hash = '/';
-
-                json = {};
-            } else {
-                throw new Error(JSON.stringify(response));
-            }
+            throw new Error(JSON.stringify(jsonData));
         }
 
-        yield put({ type: 'set_value', payload: { key: returnReduceKey, value: json } });
-        if (!json.sucesso) {
-            if (withWarningAlert) yield put({ type: 'set_value', payload: { key: 'sweetalert', value: { title: json.mensagens[0], message: `${msgWarningAlert}\n${json.mensagens.join('\n')}`, type: 'warning' } } });
-
-            console.error(json.mensagens);
-        } else {
-            if (withSuccessedAlert) yield put({ type: 'set_value', payload: { key: 'sweetalert', value: { title: json.mensagens[0], message: `${msgSuccessedAlert}\n${json.mensagens.join('\n')}`, type: 'success' } } });
-            
-            console.error(json.mensagens);
+        yield put({ type: 'set_value', payload: { key: returnReduceKey, value: jsonData, treatment } });
+        yield put({ type: 'fetch_success', payload: config });
+        if (callback) {
+            yield put(callback);
         }
-
-        if (withProccess)
-            yield put({ type: 'set_value', payload: { key: 'loading', value: { in: false, text: '' } } });
     } catch (error) {
-        yield put({ type: 'set_value', payload: { key: returnReduceKey } });
 
-        if (withErrorAlert) yield put({ type: 'set_value', payload: { key: 'sweetalert', value: { title: msgErrorAlert, message: `Entre em contato com o suporte. (${error})`, type: 'error' } } });
-        if (withProccess) yield put({ type: 'set_value', payload: { key: 'loading', value: { in: false, text: '' } } });
+        yield put({ type: 'fetch_failed', payload: error });
     }
-};
+}

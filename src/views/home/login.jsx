@@ -8,8 +8,8 @@ import { Field } from 'redux-form';
 import { post } from '../../stores/actions';
 
 function login(values) {
-
-    return post('usuario/login', 'session', values, { withProccess: true, msgProccess: 'Autenticando...', withWarningAlert: true, msgWarningAlert: 'E-mail ou senha incorreto!', withErrorAlert: true, msgErrorAlert: 'Erro de comunicação com serviço de autenticação.' });
+    
+    return post('usuario/login', 'session', { param: values, titleProcess: 'Autenticando...', messageFailed: 'Erro de comunicação com serviço de autenticação.' });
 }
 
 function validate(values) {
