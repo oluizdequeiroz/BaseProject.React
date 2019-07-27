@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { bindDefault } from '../stores/binders';
+import { bindDefault } from '../config/binders';
 
 class Panel extends Component {
 

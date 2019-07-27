@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 import Login from './home/login';
-import { bindDefault } from '../stores/binders';
+import { bindDefault } from '../config/binders';
+import swal from 'sweetalert2';
+
+import '../assets/css/material-dashboard.css';
 
 class Index extends Component {
 
@@ -9,7 +12,7 @@ class Index extends Component {
         const { setValue } = this.props;
 
         const session = JSON.parse(sessionStorage.getItem('session'));
-        if (session) {
+        if (session && session.sucesso) {
             setValue('session', session);
         }
 
@@ -24,6 +27,8 @@ class Index extends Component {
         if (session) {
             if (session.sucesso) {
                 sessionStorage.setItem('session', JSON.stringify(session));
+            } else {
+                swal.fire(session.erros.join(', '), undefined, 'warning');
             }
         }
     }
@@ -31,7 +36,7 @@ class Index extends Component {
     render() {
         const { session } = this.props;
         
-        return session ? this.props.children : <Login />;
+        return session && session.sucesso ? this.props.children : <Login />;
     }
 }
 

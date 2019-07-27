@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
 const labelStyleError = {
-    position: 'absolute',
-    top: -25
+    float: 'right'
 };
 
 const inputStyleError = {
-    border: 'solid 1px red', 
+    borderBottom: 'solid 3px red',
     borderRadius: '4px'
 };
 
@@ -14,11 +13,8 @@ class Input extends Component {
 
     render() {
 
-        const { input, label, type, placeholder, meta: { touched, error, warning }, list } = this.props;
+        const { input, type, placeholder, meta: { touched, error, warning }, list } = this.props;
         const inputProps = { type, placeholder, list };
-        const divInputProps = label ? {
-            className: `input-group`
-        } : undefined;
 
         input.style = touched && error ? inputStyleError : undefined;
 
@@ -26,15 +22,12 @@ class Input extends Component {
 
         return (
             <div className="form-group">
+                {theInput}
                 {touched && ((
                     error && <div className="h6 text-danger" style={labelStyleError}>{error}</div>
                 ) || (
                     warning && <div className="h6 text-warning" style={labelStyleError}>{warning}</div>
                 ))}
-                <div {...divInputProps}>
-                    {label && <label className="input-group-addon">{label}</label>}
-                    {theInput}
-                </div>
             </div>
         );
     }

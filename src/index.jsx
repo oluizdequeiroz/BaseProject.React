@@ -6,14 +6,13 @@ import { Provider } from 'react-redux';
 import Index from './views';
 import Menu from './views/menu';
 import Panel from './views/panel';
-import Swal from './components/swal';
+import Loading from './components/loading';
 
 import routes from './views/routes';
 
-import configureStore from './stores';
-import DevTools from './stores/devtools';
+import configureStore from './config/store';
+import DevTools from './config/devtools';
 
-import './assets/css/material-dashboard.css';
 import './index.css';
 
 ReactDOM.render(
@@ -28,8 +27,8 @@ ReactDOM.render(
                         )}
                     </Switch>
                 </Panel>
-                <Swal />
             </Index>
+            <Loading />
             {process.env.NODE_ENV !== 'production' ? <DevTools /> : ''}
         </Router>
     </Provider>, document.getElementById('root'));

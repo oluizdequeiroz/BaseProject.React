@@ -4,10 +4,10 @@ import { persistState } from 'redux-devtools';
 import { reducer as form } from 'redux-form';
 import multi from 'redux-multi';
 
-import reducers from './reducers';
-import DevTools from './devtools';
+import reducers from '../reducers';
+import DevTools from '../devtools';
 
-import sagas from './sagas';
+import sagas from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -27,8 +27,8 @@ export default function configureStore() {
     );
 
     if (module.hot) {
-        module.hot.accept('./reducers', () =>
-            store.replaceReducer(require('./reducers').default)
+        module.hot.accept('../reducers', () =>
+            store.replaceReducer(require('../reducers').default)
         );
     }
 

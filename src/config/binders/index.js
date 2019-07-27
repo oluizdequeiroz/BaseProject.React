@@ -22,12 +22,6 @@ export function bindWithActions(...reducerKeys) {
 }
 
 export function bindReduxForm(...reducerKeys) {
-    const selectState = state => {
-        let reducers = {};
-        reducerKeys.forEach(key => reducers[key] = state.reducers[key]);
-        return reducers;
-    };
-
     return (...actions) => {
         let _actions = {};
         actions.forEach(action => _actions[JSON.stringify(_actions) === "{}" ? 'onSubmit' : action.name] = action);
@@ -45,7 +39,7 @@ export function bindReduxForm(...reducerKeys) {
                 });
 
                 formComponent = createReduxForm(formComponent);
-                return connect(selectState, selectDispatch)(formComponent);
+                return connect(selects(reducerKeys), selectDispatch)(formComponent);
             };
         };
     }
