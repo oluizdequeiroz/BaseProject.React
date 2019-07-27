@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import swal from 'sweetalert2';
 
 import Login from './home/login';
-import { bindDefault } from '../stores/binders';
+import { bindDefault } from '../config/binders';
+import swal from 'sweetalert2';
 
 class Index extends Component {
 
@@ -10,34 +10,32 @@ class Index extends Component {
         const { setValue } = this.props;
 
         const session = JSON.parse(sessionStorage.getItem('session'));
-        if (session) {
+        if (session && session.sucesso) {
             setValue('session', session);
         }
 
-        if (window.location.hash !== '/') {
-            window.location.hash = '/';
+        if (window.location.hash !== '#/') {
+            window.location.hash = '#/';
         }
     }
 
     componentDidUpdate() {
-        const { session, sweetalert } = this.props;
+        const { session } = this.props;
 
         if (session) {
             if (session.sucesso) {
                 sessionStorage.setItem('session', JSON.stringify(session));
+            } else {
+                swal.fire('Sessão não iniciada!', session.erros.join(', '), 'warning');
             }
-        }
-
-        if (sweetalert) {
-            swal.fire(sweetalert.title, sweetalert.message, sweetalert.type);
         }
     }
 
     render() {
         const { session } = this.props;
         
-        return session ? this.props.children : <Login />;
+        return session && session.sucesso ? this.props.children : <Login />;
     }
 }
 
-export default bindDefault('session', 'sweetalert')(Index);
+export default bindDefault('session')(Index);

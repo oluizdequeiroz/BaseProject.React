@@ -4,14 +4,14 @@ import Users from './users';
 export default [
     {
         exact: true,
-        path: '/',
+        path: '#/',
         icon: 'home',
         name: 'Início',
         component: Home
     },
     {
-        path: '/users',
-        icon: 'person',
+        path: '#/users',
+        icon: 'users',
         name: 'Usuários',
         component: Users
     }

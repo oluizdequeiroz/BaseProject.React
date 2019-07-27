@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { bindDefault } from '../config/binders';
 
 class Panel extends Component {
 
@@ -8,17 +9,18 @@ class Panel extends Component {
     }
 
     componentDidMount = () => {
-        if (window.location.hash !== '/') window.location.hash = '/';
+        if (window.location.hash !== '#/') window.location.hash = '#/';
     }
 
-    blurNavBarToggler = () => this.setState({ tshow: false });
     clickNavBarToggler = () => this.setState({ tshow: !this.state.tshow });
-
-    blurNavItemDropdown = () => this.setState({ ishow: false });
-    clickNavItemDropdown = () => this.setState({ ishow: !this.state.ishow });
+    blurNavBarToggler = () => this.setState({ tshow: false });
+    onSair = () => {
+        const { clearValues } = this.props;
+        sessionStorage.clear();
+        clearValues();
+    }
 
     render() {
-        const { ishow } = this.state;
         const { tshow } = this.state;
 
         if (tshow) document.getElementsByTagName('html')[0].classList.add('nav-open');
@@ -29,7 +31,7 @@ class Panel extends Component {
                 <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
                     <div className="container-fluid">
                         <div className="navbar-wrapper">
-                            <a className="navbar-brand" href="/me">[user name of session]</a>
+                            <a className="navbar-brand" href="/me">{this.props.username}</a>
                         </div>
                         <button className={`navbar-toggler ${tshow && 'toggled'}`} onClick={this.clickNavBarToggler} onBlur={this.blurNavBarToggler} type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="sr-only">Toggle navigation</span>
@@ -39,18 +41,7 @@ class Panel extends Component {
                         </button>
                         <div className="collapse navbar-collapse justify-content-end">
                             <ul className="navbar-nav">
-                                <li className={`nav-item dropdown ${ishow && 'show'}`} onClick={this.clickNavItemDropdown} onBlur={this.blurNavItemDropdown}>
-                                    <a className="nav-link" href="#/" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i className="material-icons">person</i>
-                                        <p className="d-lg-none d-md-block">Conta</p>
-                                    </a>
-                                    <div className={`dropdown-menu dropdown-menu-right ${ishow && 'show'}`} aria-labelledby="navbarDropdownProfile">
-                                        <a className="dropdown-item" href="#/">Perfil</a>
-                                        <a className="dropdown-item" href="#/">Configurações</a>
-                                        <div className="dropdown-divider"></div>
-                                        <a className="dropdown-item" href="#/">Sair</a>
-                                    </div>
-                                </li>
+                                <a className="btn btn-danger" href="#/" onClick={this.onSair}>Sair</a>
                             </ul>
                         </div>
                     </div>
@@ -67,4 +58,4 @@ class Panel extends Component {
     }
 }
 
-export default Panel;
+export default bindDefault('username')(Panel);

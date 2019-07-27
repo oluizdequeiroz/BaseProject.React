@@ -1,40 +1,25 @@
 import React, { Component } from 'react';
-
-const labelStyleError = {
-    position: 'absolute',
-    top: -25
-};
-
-const inputStyleError = {
-    border: 'solid 1px red', 
-    borderRadius: '4px'
-};
+import { Popover } from 'reactstrap';
 
 class Input extends Component {
 
     render() {
 
-        const { input, label, type, placeholder, meta: { touched, error, warning }, list } = this.props;
+        const { input, type, placeholder, meta: { touched, error, warning }, list } = this.props;
         const inputProps = { type, placeholder, list };
-        const divInputProps = label ? {
-            className: `input-group`
-        } : undefined;
 
-        input.style = touched && error ? inputStyleError : undefined;
+        input.id = input.name;
 
         const theInput = type === "textarea" ? <textarea className="form-control" {...input} {...inputProps}></textarea> : <input className="form-control" {...input} {...inputProps} />;
 
         return (
             <div className="form-group">
-                {touched && ((
-                    error && <div className="h6 text-danger" style={labelStyleError}>{error}</div>
-                ) || (
-                    warning && <div className="h6 text-warning" style={labelStyleError}>{warning}</div>
-                ))}
-                <div {...divInputProps}>
-                    {label && <label className="input-group-addon">{label}</label>}
-                    {theInput}
-                </div>
+                {theInput}
+                {<Popover placement="right" target={input.id} isOpen={touched && error}>
+                    <div style={{ padding: 10 }}>
+                        <span className="h6 text-danger">{error || warning}</span>
+                    </div>
+                </Popover>}
             </div>
         );
     }

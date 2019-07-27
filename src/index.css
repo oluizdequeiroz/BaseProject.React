@@ -14,7 +14,6 @@
     }
 }
 
-
 @media only screen and (max-width: 530px) {
     .content-centered {
         position: fixed;
@@ -22,4 +21,17 @@
         top: 50%;
         width: 90%;
     }
+}
+
+.bodyblue {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #0396FF;
+}
+
+.card-with-shadow {
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
 }
