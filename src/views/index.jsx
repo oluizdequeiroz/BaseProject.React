@@ -4,8 +4,6 @@ import Login from './home/login';
 import { bindDefault } from '../config/binders';
 import swal from 'sweetalert2';
 
-import '../assets/css/material-dashboard.css';
-
 class Index extends Component {
 
     componentDidMount() {

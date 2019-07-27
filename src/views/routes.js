@@ -11,7 +11,7 @@ export default [
     },
     {
         path: '/users',
-        icon: 'person',
+        icon: 'users',
         name: 'Usuários',
         component: Users
     }

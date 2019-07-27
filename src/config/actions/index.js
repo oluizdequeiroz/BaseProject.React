@@ -11,7 +11,7 @@ export function clearValues() {
 
 const proccess = {
     icon: 'fa fa-cog fa-2x fa-spin fa-fw',
-    className: 'alert-info',
+    className: 'alert-primary',
     message: 'Processando, aguarde.',
     show: true
 };

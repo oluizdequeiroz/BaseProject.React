@@ -26,7 +26,7 @@ class Menu extends Component {
                         {routes.map((route, index) => (
                             <li key={index} className={`nav-item ${this.isActived(route.path) && 'active'}`} onClick={() => this.clickRouteItem(route.path)}>
                                 <Link className="nav-link" to={route.path}>
-                                    <i className="material-icons">{route.icon}</i>
+                                    <i className={`fa fa-${route.icon}`} />
                                     <p>{route.name}</p>
                                 </Link>
                             </li>

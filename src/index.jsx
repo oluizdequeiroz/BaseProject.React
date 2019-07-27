@@ -13,6 +13,7 @@ import routes from './views/routes';
 import configureStore from './config/store';
 import DevTools from './config/devtools';
 
+import './assets/css/material-dashboard.css';
 import './index.css';
 
 ReactDOM.render(
