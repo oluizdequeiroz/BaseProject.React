@@ -3,10 +3,12 @@ import React, { Component } from 'react';
 import routes from '../routes';
 import { Link } from 'react-router-dom';
 
+const logo = require('../../assets/img/logoV2.png');
+
 class Menu extends Component {
 
     state = {
-        actived: '/'
+        actived: '#/'
     }
 
     isActived = path => this.state.actived === path;
@@ -16,9 +18,11 @@ class Menu extends Component {
 
         return (
             <div className="sidebar" data-color="purple" data-background-color="white" data-image="../../assets/img/sidebar-1.jpg">
-                <div className="logo" onClick={() => this.clickRouteItem('/')}>
-                    <Link to="/" className="simple-text logo-normal">
-                        Base Project
+                <div className="logo" onClick={() => this.clickRouteItem('#/')}>
+                    <Link to="#/" className="simple-text logo-normal">
+                        <div className="text-center">
+                            <img src={logo} alt="Alimenta Soluções" width={150} />
+                        </div>
                     </Link>
                 </div>
                 <div className="sidebar-wrapper">

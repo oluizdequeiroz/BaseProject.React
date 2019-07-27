@@ -14,8 +14,8 @@ class Index extends Component {
             setValue('session', session);
         }
 
-        if (window.location.hash !== '/') {
-            window.location.hash = '/';
+        if (window.location.hash !== '#/') {
+            window.location.hash = '#/';
         }
     }
 
@@ -26,7 +26,7 @@ class Index extends Component {
             if (session.sucesso) {
                 sessionStorage.setItem('session', JSON.stringify(session));
             } else {
-                swal.fire(session.erros.join(', '), undefined, 'warning');
+                swal.fire('Sessão não iniciada!', session.erros.join(', '), 'warning');
             }
         }
     }

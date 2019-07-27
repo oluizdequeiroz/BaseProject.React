@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
-
-const labelStyleError = {
-    float: 'right'
-};
-
-const inputStyleError = {
-    borderBottom: 'solid 3px red',
-    borderRadius: '4px'
-};
+import { Popover } from 'reactstrap';
 
 class Input extends Component {
 
@@ -16,18 +8,18 @@ class Input extends Component {
         const { input, type, placeholder, meta: { touched, error, warning }, list } = this.props;
         const inputProps = { type, placeholder, list };
 
-        input.style = touched && error ? inputStyleError : undefined;
+        input.id = input.name;
 
         const theInput = type === "textarea" ? <textarea className="form-control" {...input} {...inputProps}></textarea> : <input className="form-control" {...input} {...inputProps} />;
 
         return (
             <div className="form-group">
                 {theInput}
-                {touched && ((
-                    error && <div className="h6 text-danger" style={labelStyleError}>{error}</div>
-                ) || (
-                    warning && <div className="h6 text-warning" style={labelStyleError}>{warning}</div>
-                ))}
+                {<Popover placement="right" target={input.id} isOpen={touched && error}>
+                    <div style={{ padding: 10 }}>
+                        <span className="h6 text-danger">{error || warning}</span>
+                    </div>
+                </Popover>}
             </div>
         );
     }

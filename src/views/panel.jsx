@@ -9,7 +9,7 @@ class Panel extends Component {
     }
 
     componentDidMount = () => {
-        if (window.location.hash !== '/') window.location.hash = '/';
+        if (window.location.hash !== '#/') window.location.hash = '#/';
     }
 
     clickNavBarToggler = () => this.setState({ tshow: !this.state.tshow });
@@ -31,7 +31,7 @@ class Panel extends Component {
                 <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
                     <div className="container-fluid">
                         <div className="navbar-wrapper">
-                            <a className="navbar-brand" href="/me">[user name of session]</a>
+                            <a className="navbar-brand" href="/me">{this.props.username}</a>
                         </div>
                         <button className={`navbar-toggler ${tshow && 'toggled'}`} onClick={this.clickNavBarToggler} onBlur={this.blurNavBarToggler} type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="sr-only">Toggle navigation</span>
@@ -58,4 +58,4 @@ class Panel extends Component {
     }
 }
 
-export default bindDefault()(Panel);
+export default bindDefault('username')(Panel);
