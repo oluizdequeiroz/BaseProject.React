@@ -14,8 +14,8 @@ class Index extends Component {
             setValue('session', session);
         }
 
-        if (window.location.hash !== '#/') {
-            window.location.hash = '#/';
+        if (window.location.hash !== '/') {
+            window.location.hash = '/';
         }
     }
 

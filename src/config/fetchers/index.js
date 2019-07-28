@@ -21,6 +21,7 @@ export default function* _fetch(endpoint,
     } catch (error) {
         
         retorno = error;
+        yield put(callback[0]);
     }
 
     yield put({ type: 'set_value', payload: { key: returnReduceKey, value: retorno, treatment } });

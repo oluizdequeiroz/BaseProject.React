@@ -16,7 +16,7 @@ const proccess = {
     show: true
 };
 
-const success = {
+const finish = {
     icon: '',
     className: '',
     message: '',
@@ -37,8 +37,8 @@ const request = (method, endpoint, returnReduceKey, param, treatment, callback) 
                 treatment
             },
             callback: [
-                callback,
-                setValue('loading', success)
+                setValue('loading', finish),
+                callback
             ]
         }
     ]

@@ -5,7 +5,7 @@ class Input extends Component {
 
     render() {
 
-        const { input, type, placeholder, meta: { touched, error, warning }, list } = this.props;
+        const { input, type, placeholder, meta: { touched, error, warning }, list, popoverPosition } = this.props;
         const inputProps = { type, placeholder, list };
 
         input.id = input.name;
@@ -15,7 +15,7 @@ class Input extends Component {
         return (
             <div className="form-group">
                 {theInput}
-                {<Popover placement="right" target={input.id} isOpen={touched && error}>
+                {<Popover placement={popoverPosition || 'right'} target={input.id} isOpen={touched && error}>
                     <div style={{ padding: 10 }}>
                         <span className="h6 text-danger">{error || warning}</span>
                     </div>
