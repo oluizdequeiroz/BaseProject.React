@@ -26,7 +26,7 @@ class Index extends Component {
             if (session.sucesso) {
                 sessionStorage.setItem('session', JSON.stringify(session));
             } else {
-                swal.fire('Sessão não iniciada!', session.erros.join(', '), 'warning');
+                swal.fire('Sessão não iniciada!', session.erros ? session.erros.join(', ') : 'Falha de comunicação com o serviço!', 'warning');
             }
         }
     }
