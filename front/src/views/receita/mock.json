@@ -1,0 +1,12 @@
+{
+    "receita": [
+        {
+            "codigo": 9,
+            "receita": "arroz"
+        },
+        {
+            "codigo": 1,
+            "receita": "baiao"
+        }
+    ]
+}
