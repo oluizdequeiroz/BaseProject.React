@@ -8,19 +8,18 @@ class Receita extends Component {
 
     state = {
         novaReceita: false
-    }
+    };
 
     cancelar() {
         const { setValue } = this.props;
 
         setValue('receita');
         setValue('receitaRegistro');
-        setValue('receitaAtualizacao');
+        this.setNovaReceita(false);
     }
 
-    openNovaReceita(flag) {
+    setNovaReceita(flag) {
         this.setState({ novaReceita: flag });
-        this.cancelar();
     }
 
     render() {
@@ -37,7 +36,7 @@ class Receita extends Component {
                             </div>
                             {(!novaReceita && !receita) ?
                                 <div className="card-body">
-                                    <PesquisarReceitaForm key={receita && receita.codigo} cancelar={this.cancelar.bind(this)} onNovaReceita={this.openNovaReceita.bind(this)} />
+                                    <PesquisarReceitaForm key={receita && receita.codigo} onNovaReceita={this.setNovaReceita.bind(this)} />
                                     <div style={{ marginTop: '40px' }}>
                                         <ReceitaTable />
                                     </div>
@@ -46,7 +45,6 @@ class Receita extends Component {
                         </div>
                     </div>
                 </div>
-                {/* tela de cadastrar receitas */}
                 <div className="row">
                     <div className="col-md-12">
                         <div className="card">
@@ -54,7 +52,7 @@ class Receita extends Component {
                                 <h4 className="card-title">{(novaReceita || receita) ? `${novaReceita ? 'Cadastrar' : 'Editar'} Receita` : 'Selecione uma receita acima ou clique em Nova Receita...'}</h4>
                             </div>
                             <div className="card-body">
-                                {(novaReceita || receita) && <EditarSalvarForm key={receita && receita.codigo} cancelar={this.openNovaReceita.bind(this)} />}
+                                {(novaReceita || receita) && <EditarSalvarForm key={receita && receita.codigo} cancelar={this.cancelar.bind(this)} onNovaReceita={this.setNovaReceita.bind(this)} />}
                             </div>
                         </div>
                     </div>

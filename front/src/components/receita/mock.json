@@ -1,5 +1,5 @@
 {
-    "receita": [
+    "receitas": [
         {
             "codigo": 9,
             "receita": "arroz"
@@ -7,6 +7,29 @@
         {
             "codigo": 1,
             "receita": "baiao"
+        }
+    ],
+    "itensReceita": [
+        {
+            "codigo": 0,
+            "produto": 0,
+            "medida": 0,
+            "qtdLiquida": 0,
+            "perdaBruta": 0
+        },
+        {
+            "codigo": 0,
+            "produto": 0,
+            "medida": 0,
+            "qtdLiquida": 0,
+            "perdaBruta": 0
+        },
+        {
+            "codigo": 0,
+            "produto": 0,
+            "medida": 0,
+            "qtdLiquida": 0,
+            "perdaBruta": 0
         }
     ]
 }

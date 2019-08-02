@@ -34,7 +34,7 @@ class UserForm extends Component {
     }
 
     cancelar() {
-        const { cancelar, dispatch, form, usuario } = this.props;
+        const { dispatch, form, usuario, cancelar } = this.props;
         
         dispatch(initialize(form, usuario));
         cancelar();

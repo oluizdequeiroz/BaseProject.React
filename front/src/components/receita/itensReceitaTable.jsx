@@ -4,7 +4,7 @@ import { bindDefault } from '../../config/binders';
 import BtnGroupActions from './actions';
 import BootstrapTable from 'react-bootstrap-table-next';
 
-export default bindDefault('receitas')(({ receitas = require('./mock.json').receitas /* TODO: lista de usuários mockada */ }) => {
+export default bindDefault('receitas')(({ receitas }) => {
 
     const columns = [
         {
@@ -44,5 +44,5 @@ export default bindDefault('receitas')(({ receitas = require('./mock.json').rece
         actions: <BtnGroupActions receita={receita} />
     }));
 
-    return <BootstrapTable striped condensed keyField="codigo" data={_receitas} columns={columns} noDataIndication={_receitas ? 'Não há receitas!' : <i className="fa fa-cog fa-2x fa-spin fa-fw" />} />
+    return <BootstrapTable striped condensed keyField="codigo" data={_receitas} columns={columns} noDataIndication={_receitas ? 'Pesquise os itens da receita!' : <i className="fa fa-cog fa-2x fa-spin fa-fw" />} />
 });

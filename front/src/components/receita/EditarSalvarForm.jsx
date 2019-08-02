@@ -4,24 +4,20 @@ import { bindReduxForm } from '../../config/binders';
 import { Field, initialize } from 'redux-form';
 import Input from '../divers/input';
 import TableItensReceita from './itensReceitaTable';
-import { post, put } from '../../config/actions';
+import { post } from '../../config/actions';
 import swal from 'sweetalert2';
 
 function register(values) {
 
-    if (values.codigo) {
-        return put(`receita/atualizar/${values.codigo}`, 'receitaAtualizacao', { param: values });
-    } else {
-        return post('receita/salvar', 'receitaRegistro', { param: values });
-    }
+    return post('receita/salvar', 'receitaRegistro', { param: values });
 }
 
 function validate(values) {
 
     const errors = {};
 
-    if (!values.nomeReceita) {
-        errors.nomeReceita = 'Nome da receita é obrigatório.';
+    if (!values.receita) {
+        errors.receita = 'Nome da receita é obrigatório.';
     }
     if (!values.unidadeMedida) {
         errors.unidadeMedida = 'Unidade de medida é obrigatório';
@@ -44,37 +40,18 @@ class ReceitaForm extends Component {
         dispatch(initialize(form, receita));
     }
 
-    cancelar() {
-        const { cancelar, dispatch, form, receita } = this.props;
+    voltar() {
+        const { dispatch, form, receita, cancelar } = this.props;
 
         dispatch(initialize(form, receita));
-        cancelar(false);
+        cancelar();
     }
 
     render() {
-        const { handleSubmit, receitaRegistro, receitaAtualizacao } = this.props;
+        const { handleSubmit, receitaRegistro } = this.props;
 
-        if (receitaRegistro) {
-            if (receitaRegistro.sucesso) {
-                swal.fire('Receita registrada com sucesso!', undefined, 'success');
-            } else {
-                if (receitaRegistro.stack) {
-                    swal.fire('Erro ao tentar registrar!', 'O sistema acionou uma exceção ao tentar registrar uma receita.', 'error');
-                } else {
-                    swal.fire('Falha ao tentar registrar!', 'Falha de comunicação com o serviço!', 'warning');
-                }
-            }
-        }
-        if (receitaAtualizacao) {
-            if (receitaAtualizacao.sucesso) {
-                swal.fire('Receita atualizada com sucesso!', undefined, 'success');
-            } else {
-                if (receitaAtualizacao.stack) {
-                    swal.fire('Erro ao tentar atualizar!', 'O sistema acionou uma exceção ao tentar atualizar uma receita.', 'error');
-                } else {
-                    swal.fire('Falha ao tentar atualizar!', 'Falha de comunicação com o serviço!', 'warning');
-                }
-            }
+        if (receitaRegistro && receitaRegistro.stack) {
+            swal.fire('Erro ao tentar registrar!', 'O sistema acionou uma exceção ao tentar registrar uma receita.', 'error');
         }
 
         return (
@@ -87,8 +64,7 @@ class ReceitaForm extends Component {
                         <Accordion.Collapse eventKey="0">
                             <Card.Body>
                                 <Row>
-                                    <Field name="codigo" component={Input} type="hidden" />
-                                    <Col><Field name="nomeReceita" component={Input} type="text" placeholder="Nome da Receita" popoverPosition="top" /></Col>
+                                    <Col><Field name="receita" component={Input} type="text" placeholder="Nome da Receita" popoverPosition="top" /></Col>
                                     <Col>
                                         <Field name="unidadeMedida" component={Input} type="select" placeholder="Unidade de Medida" popoverPosition="top">
                                             <option>KG</option>
@@ -118,11 +94,11 @@ class ReceitaForm extends Component {
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
-                <div className="btn btn-ligth" onClick={this.cancelar.bind(this)}><i className="fa fa-arrow-left" /> Voltar</div>
+                <div className="btn btn-ligth" onClick={this.voltar.bind(this)}><i className="fa fa-arrow-left" /> Voltar</div>
                 <button type="submit" className="btn btn-success"><i className="fa fa-save" /> Salvar</button>
             </form>
         );
     }
 }
 
-export default bindReduxForm('receita', 'receitaRegistro', 'receitaAtualizacao')(register)(validate)(ReceitaForm);
+export default bindReduxForm('receita', 'receitaRegistro')(register)(validate)(ReceitaForm);

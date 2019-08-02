@@ -10,7 +10,6 @@ class Users extends Component {
 
         setValue('usuario');
         setValue('usuarioRegistro');
-        this.setState({ novoUsuario: false })
     }
 
     render() {

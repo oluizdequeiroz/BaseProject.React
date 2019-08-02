@@ -4,9 +4,9 @@ import { Popover } from 'reactstrap';
 class Input extends Component {
 
     render() {
-
-        const { input, type, placeholder, meta: { touched, error, warning }, list, popoverPosition, children } = this.props;
-        const inputProps = { type, placeholder, list };
+        
+        const { input, type, placeholder, meta: { touched, error, warning }, list, popoverPosition, children, onKeyUp } = this.props;
+        const inputProps = { type, placeholder, list, onKeyUp };
 
         input.id = input.name;
 
