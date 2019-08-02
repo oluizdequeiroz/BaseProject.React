@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindReduxForm } from '../../config/binders';
 import { Field, initialize } from 'redux-form';
 import Input from '../divers/input';
-import { get, setValue } from '../../config/actions';
+import { /*get, */setValue } from '../../config/actions';
 
 const receitas = require('./mock.json').receitas; /* TODO: lista de receitas mockada */
 

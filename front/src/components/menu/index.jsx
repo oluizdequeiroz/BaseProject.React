@@ -21,7 +21,7 @@ class Menu extends Component {
                 <div className="logo" onClick={() => this.clickRouteItem('/')}>
                     <Link to="/" className="simple-text logo-normal">
                         <div className="text-center">
-                            {/* <img src={logo} alt="Alimenta Soluções" width={150} /> */}
+                            <img src={logo} alt="Alimenta Soluções" width={150} />
                         </div>
                     </Link>
                 </div>
