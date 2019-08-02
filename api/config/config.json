@@ -3,7 +3,7 @@
     "username": "sysalimento",
     "password": "F@sysAli28*",
     "database": "sysalimento",
-    "host": "sysalimento.mysql.dbaas.com.br",
+    "host": "186.202.152.67",
     "dialect": "mysql",
     "operatorsAliases": false
   },
@@ -11,7 +11,7 @@
     "username": "sysalimento",
     "password": "F@sysAli28*",
     "database": "sysalimento",
-    "host": "sysalimento.mysql.dbaas.com.br",
+    "host": "186.202.152.67",
     "dialect": "mysql",
     "operatorsAliases": false
   },
@@ -19,7 +19,7 @@
     "username": "sysalimento",
     "password": "F@sysAli28*",
     "database": "sysalimento",
-    "host": "sysalimento.mysql.dbaas.com.br",
+    "host": "186.202.152.67",
     "dialect": "mysql",
     "operatorsAliases": false
   }
