@@ -3,19 +3,33 @@ import { bindDefault } from '../../config/binders';
 
 import BtnGroupActions from './actions';
 import BootstrapTable from 'react-bootstrap-table-next';
-// import receita from './';
 
 export default bindDefault('receitas')(({ receitas = require('./mock.json').receitas /* TODO: lista de usuários mockada */ }) => {
 
     const columns = [
         {
             dataField: 'codigo',
-            text: 'Código',
+            text: 'Código do Produto',
             sort: true
         },
         {
-            dataField: 'receita',
-            text: 'Receita',
+            dataField: 'produto',
+            text: 'Nome do Produto',
+            sort: true
+        },
+        {
+            dataField: 'medida',
+            text: 'Unidade de Medida',
+            sort: true
+        },
+        {
+            dataField: 'qtdliquida',
+            text: 'Quantidade Liquida',
+            sort: true
+        },
+        {
+            dataField: 'perdaBruta',
+            text: '% Perda Bruta',
             sort: true
         },
         {

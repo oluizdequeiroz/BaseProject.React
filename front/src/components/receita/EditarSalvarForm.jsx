@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Accordion, Card, Button, Row, Col } from 'react-bootstrap';
 import { bindReduxForm } from '../../config/binders';
 import { Field, initialize } from 'redux-form';
-import Input from '../../components/input';
+import Input from '../divers/input';
 import TableItensReceita from './itensReceitaTable';
 import { post, put } from '../../config/actions';
 import swal from 'sweetalert2';

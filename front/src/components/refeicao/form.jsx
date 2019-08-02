@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindReduxForm } from '../../config/binders';
 import { Field, initialize } from 'redux-form';
-import Input from '../../components/input';
+import Input from '../divers/input';
 import { post } from '../../config/actions';
 import swal from 'sweetalert2';
 
@@ -17,7 +17,6 @@ function validate(values) {
     if (!values.refeicao) {
         errors.refeicao = 'Refeição é obrigatório.';
     }
-
    
     return errors;
 }

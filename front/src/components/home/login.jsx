@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindReduxForm } from '../../config/binders';
 
-import Input from '../../components/input';
+import Input from '../divers/input';
 
 import { Field } from 'redux-form';
 import { post } from '../../config/actions';

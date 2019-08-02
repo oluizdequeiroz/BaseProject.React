@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import Index from './views';
-import Menu from './views/menu';
-import Panel from './views/panel';
-import Loading from './components/loading';
+import Index from './components';
+import Menu from './components/menu';
+import Panel from './components/panel';
+import Loading from './components/divers/loading';
 
-import routes from './views/routes';
+import routes from './components/routes';
 
 import configureStore from './config/store';
 import DevTools from './config/devtools';

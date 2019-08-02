@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReceitaTable from './table';
-//import ReceitaForm from "./form";
 import PesquisarReceitaForm from "./PesquisarReceitaForm";
 import EditarSalvarForm from "./EditarSalvarForm";
 import { bindDefault } from '../../config/binders';
+
 class Receita extends Component {
 
     state = {

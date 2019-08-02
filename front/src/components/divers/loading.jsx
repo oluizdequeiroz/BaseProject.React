@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
-import { bindDefault } from '../config/binders';
+import { bindDefault } from '../../config/binders';
 
 export default bindDefault('loading')(
     props => {
