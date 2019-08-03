@@ -1,59 +1,19 @@
-import React, { Component } from 'react';
-import { bindReduxForm } from '../../config/binders';
-import { Field, initialize } from 'redux-form';
-import Input from '../divers/input';
-import { /*get, */setValue } from '../../config/actions';
+import React from 'react';
+import { bindDefault } from '../../config/binders';
 
-const receitas = require('./mock.json').receitas; /* TODO: lista de receitas mockada */
+import { Search } from 'react-bootstrap-table2-toolkit';
+const { SearchBar } = Search;
 
-function search(values) {
+export default bindDefault()(({ onNovaReceita, searchProps }) => {
+    let searchReceitas;
 
-    // return get(`receita/nome/${values.nomeReceita}`, 'receitas', { param: values });
-    return setValue('receitas', receitas.filter(receita => receita.receita === values.nomeReceita)); /* TODO: lista de receitas mockada */
-}
-
-// function validate(values) {
-
-//     const errors = {};
-
-//     if (!values.nomeReceita) {
-//         errors.nomeReceita = 'Nome da receita é obrigatório.';
-//     }
-
-//     return errors;
-// }
-
-class PesquisarReceitaForm extends Component {
-
-    recarregarTable = () => this.props.setValue('receitas', receitas); /* TODO: lista de receitas mockada */
-
-    limpar() {
-        const { dispatch, form } = this.props;
-
-        dispatch(initialize(form, { nomeReceita: '' }));
-        this.recarregarTable();
-    }
-
-    digitando({ target: { value }}) {
-        if (value === '') {
-            this.recarregarTable();
-        }
-    }
-
-    render() {
-        const { handleSubmit, onNovaReceita } = this.props;
-
-        return (
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <Field name="nomeReceita" component={Input} type="text" placeholder="Digite o nome da Receita" popoverPosition="top" style={{ width: '100%' }} onKeyUp={this.digitando.bind(this)} />
-                </div>
-                <button type="submit" className="btn btn-info"><i className="fa fa-search" /> Pesquisar</button>
-                <div className="btn btn-light" onClick={this.limpar.bind(this)}><i className="fa fa-eraser" /> Limpar</div>
-                <div className="btn btn-success" onClick={() => onNovaReceita(true)}><i className="fa fa-plus" /> Nova Receita</div>
-            </form>
-        );
-    }
-}
-
-export default bindReduxForm()(search)()(PesquisarReceitaForm);
+    return (
+        <div>
+            <div>
+                <SearchBar ref={input => searchReceitas = input} placeholder="Digite o nome da Receita" {...searchProps} />
+            </div>
+            <div className="btn btn-light" onClick={() => searchReceitas.props.onClear()}><i className="fa fa-eraser" /> Limpar</div>
+            <div className="btn btn-success" onClick={() => onNovaReceita(true)}><i className="fa fa-plus" /> Nova Receita</div>
+        </div>
+    );
+});

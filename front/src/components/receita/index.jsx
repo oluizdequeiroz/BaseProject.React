@@ -4,12 +4,20 @@ import PesquisarReceitaForm from "./PesquisarReceitaForm";
 import EditarSalvarForm from "./EditarSalvarForm";
 import { bindDefault } from '../../config/binders';
 
+import ToolkitProvider from 'react-bootstrap-table2-toolkit';
+
 class Receita extends Component {
 
     state = {
         novaReceita: false,
         visible: false
     };
+
+    componentDidMount() {
+        const { get } = this.props;
+
+        get('receitas', 'receitas', { treatment: (response) => response.retorno });
+    }
 
     cancelar() {
         const { setValue } = this.props;
@@ -42,12 +50,17 @@ class Receita extends Component {
                             </div>
                             {(!novaReceita && !receita) || this.state.visible ?
                                 <div className="card-body">
-                                    <PesquisarReceitaForm key={receita && receita.codigo} onNovaReceita={this.setNovaReceita.bind(this)} />
-                                    <div style={{ marginTop: '40px' }}>
-                                        <ReceitaTable />
-                                    </div>
+                                    <ToolkitProvider search>{props => (
+                                        <div>
+                                            <PesquisarReceitaForm key={receita && receita.codigo} onNovaReceita={this.setNovaReceita.bind(this)} searchProps={props.searchProps} />
+                                            <div style={{ marginTop: '40px' }}>
+                                                <ReceitaTable baseProps={props.baseProps} />
+                                            </div>
+                                        </div>
+                                    )
+                                    }</ToolkitProvider>
                                 </div>
-                            : <div className="card-body" />}
+                                : <div className="card-body" />}
                         </div>
                     </div>
                 </div>

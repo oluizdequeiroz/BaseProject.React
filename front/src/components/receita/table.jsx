@@ -1,12 +1,12 @@
 import React from 'react';
 import { bindDefault } from '../../config/binders';
 
-import BtnGroupActions from './actions';
+import BtnGroupActions from './actionsReceita';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
-export default bindDefault('receitas')(({ receitas = require('./mock.json').receitas }) => {
+export default bindDefault('receitas')(({ receitas, baseProps }) => {
 
     const columns = [
         {
@@ -15,7 +15,7 @@ export default bindDefault('receitas')(({ receitas = require('./mock.json').rece
             sort: true
         },
         {
-            dataField: 'receita',
+            dataField: 'nome',
             text: 'Receita',
             sort: true
         },
@@ -31,5 +31,23 @@ export default bindDefault('receitas')(({ receitas = require('./mock.json').rece
         actions: <BtnGroupActions receita={receita} />
     }));
 
-    return <BootstrapTable striped condensed keyField="codigo" data={_receitas} columns={columns} noDataIndication={_receitas ? 'Não há receitas!' : <i className="fa fa-cog fa-2x fa-spin fa-fw" />} pagination={paginationFactory()} />
+    const tableProps = {
+        ...baseProps,
+        keyField: "codigo",
+        data: _receitas,
+        columns: columns
+    };
+
+    return <BootstrapTable
+        striped
+        condensed
+        noDataIndication={_receitas ? 'Não há receitas!' : <i className="fa fa-cog fa-2x fa-spin fa-fw" />}
+        pagination={paginationFactory({
+            sizePerPageList: [{
+                text: '5',
+                value: 5
+            }]
+        })}
+        {...tableProps}
+    />
 });

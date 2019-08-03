@@ -16,17 +16,17 @@ function validate(values) {
 
     const errors = {};
 
-    if (!values.receita) {
-        errors.receita = 'Nome da receita é obrigatório.';
+    if (!values.nome) {
+        errors.nome = 'Nome da receita é obrigatório.';
     }
-    if (!values.unidadeMedida) {
-        errors.unidadeMedida = 'Unidade de medida é obrigatório';
+    if (!values.unidademedida) {
+        errors.unidademedida = 'Unidade de medida é obrigatório';
     }
-    if (!values.rendimento) {
-        errors.rendimento = 'Rendimento é obrigatório';
+    if (!values.quantidaderendimento) {
+        errors.quantidaderendimento = 'Rendimento é obrigatório';
     }
-    if (!values.modoPreparo) {
-        errors.modoPreparo = 'Modo de preparo é obrigatório';
+    if (!values.modopreparo) {
+        errors.modopreparo = 'Modo de preparo é obrigatório';
     }
 
     return errors;
@@ -64,17 +64,17 @@ class ReceitaForm extends Component {
                         <Accordion.Collapse eventKey="0">
                             <Card.Body>
                                 <Row>
-                                    <Col><Field name="receita" component={Input} type="text" placeholder="Nome da Receita" popoverPosition="top" /></Col>
+                                    <Col><Field name="nome" component={Input} type="text" placeholder="Nome da Receita" popoverPosition="top" /></Col>
                                     <Col>
-                                        <Field name="unidadeMedida" component={Input} type="select" placeholder="Unidade de Medida" popoverPosition="top">
+                                        <Field name="unidademedida" component={Input} type="select" placeholder="Unidade de Medida" popoverPosition="top">
                                             <option>KG</option>
                                             <option>Litro</option>
                                         </Field>
                                     </Col>
-                                    <Col><Field name="rendimento" component={Input} type="text" placeholder="Quantidade de rendimento" popoverPosition="top" /></Col>
+                                    <Col><Field name="quantidaderendimento" component={Input} type="text" placeholder="Quantidade de rendimento" popoverPosition="top" /></Col>
                                 </Row>
                                 <Row>
-                                    <Field name="modoPreparo" component={Input} type="textarea" placeholder="Descreva o modo de preparo..." popoverPosition="top" />
+                                    <Field name="modopreparo" component={Input} type="textarea" placeholder="Descreva o modo de preparo..." popoverPosition="top" />
                                 </Row>
                             </Card.Body>
                         </Accordion.Collapse>

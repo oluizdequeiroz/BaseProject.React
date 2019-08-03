@@ -3,12 +3,15 @@ import { bindDefault } from '../../config/binders';
 
 import swal from 'sweetalert2';
 
-export default bindDefault('receitaDel')(({ receita, setValue, del, receitaDel }) => {
+export default bindDefault('receitaDel')(({ receita, setValue, del, receitaDel, get }) => {
 
     function editarReceita() {
 
         setValue('receitaRegistro');
         setValue('receita', receita);
+        get(`itensreceitas/${receita.codigo}`, 'itensReceitas', {
+            treatment: response => response.retorno
+        });
     }   
 
     function deleteReceita(codigo) {

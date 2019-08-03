@@ -44,3 +44,7 @@
 .clickable {
     cursor: pointer;
 }
+
+.search-label {
+    width: 100%;
+}

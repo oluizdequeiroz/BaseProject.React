@@ -1,10 +1,10 @@
 import React from 'react';
 import { bindDefault } from '../../config/binders';
 
-import BtnGroupActions from './actions';
+import BtnGroupActions from './actionsItemReceita';
 import BootstrapTable from 'react-bootstrap-table-next';
 
-export default bindDefault('receitas')(({ receitas }) => {
+export default bindDefault('itensReceitas')(({ itensReceitas }) => {
 
     const columns = [
         {
@@ -18,17 +18,12 @@ export default bindDefault('receitas')(({ receitas }) => {
             sort: true
         },
         {
-            dataField: 'medida',
-            text: 'Unidade de Medida',
-            sort: true
-        },
-        {
-            dataField: 'qtdliquida',
+            dataField: 'quantidadeliquida',
             text: 'Quantidade Liquida',
             sort: true
         },
         {
-            dataField: 'perdaBruta',
+            dataField: 'percentualperda',
             text: '% Perda Bruta',
             sort: true
         },
@@ -39,10 +34,17 @@ export default bindDefault('receitas')(({ receitas }) => {
         }
     ];
 
-    const _receitas = (receitas || []).map(receita => ({
-        ...receita,
-        actions: <BtnGroupActions receita={receita} />
+    const _itensReceitas = (itensReceitas || []).map(itemReceita => ({
+        ...itemReceita,
+        actions: <BtnGroupActions itemReceita={itemReceita} />
     }));
 
-    return <BootstrapTable striped condensed keyField="codigo" data={_receitas} columns={columns} noDataIndication={_receitas ? 'Pesquise os itens da receita!' : <i className="fa fa-cog fa-2x fa-spin fa-fw" />} />
+    return <BootstrapTable 
+        striped 
+        condensed 
+        keyField="codigo" 
+        data={_itensReceitas} 
+        columns={columns} 
+        noDataIndication={_itensReceitas ? 'Pesquise os itens da receita!' : <i className="fa fa-cog fa-2x fa-spin fa-fw" />} 
+    />
 });
