@@ -1,26 +1,31 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tbreceita', {
-    recnumsequencial: {
+  return sequelize.define('receita', {
+    codigo: {
+      field: 'recnumsequencial',
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    recnome: {
+    nome: {
+      field: 'recnome',
       type: DataTypes.STRING(100),
       allowNull: true
     },
-    recquantidaderendimento: {
+    quantidaderendimento: {
+      field: 'recquantidaderendimento',
       type: DataTypes.DECIMAL,
       allowNull: true
     },
-    recunidademedida: {
+    unidademedida: {
+      field: 'recunidademedida',
       type: DataTypes.STRING(100),
       allowNull: true
     },
-    recmodopreparo: {
+    modopreparo: {
+      field: 'recmodopreparo',
       type: DataTypes.STRING(21844),
       allowNull: true
     }

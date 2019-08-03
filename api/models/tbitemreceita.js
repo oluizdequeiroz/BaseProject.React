@@ -1,22 +1,26 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tbitemreceita', {
-    itrnumsequencial: {
+  return sequelize.define('itemreceita', {
+    codigo: {
+      field: 'itrnumsequencial',
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    itrquantidadeliquida: {
+    quantidadeliquida: {
+      field: 'itrquantidadeliquida',
       type: DataTypes.DECIMAL,
       allowNull: true
     },
-    itrpercentualperda: {
+    percentualperda: {
+      field: 'itrpercentualperda',
       type: DataTypes.DECIMAL,
       allowNull: true
     },
-    itrproduto: {
+    produto: {
+      field: 'itrproduto',
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -24,7 +28,8 @@ module.exports = function(sequelize, DataTypes) {
         key: 'pronumsequencial'
       }
     },
-    itrreceita: {
+    receita: {
+      field: 'itrreceita',
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {

@@ -16,9 +16,8 @@ router.post('/login', (req, res, next) => {
     .catch(error => res.json(error));
 });
 
-/* GET users listing. */
 router.get('/', (req, res, next) => {
-  models.tbusuario.findAll({})
+  models.usuario.findAll({})
     .then(users => res.json({
       sucesso: true,
       retorno: users
@@ -32,9 +31,11 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/pornome/:username', (req, res, next) => {
-  models.sequelize.query(`select * from tbusuario where usunome = '${req.params.username}'`,
-    { type: models.sequelize.QueryTypes.SELECT }
-  )
+  models.usuario.findAll({
+    where: {
+      nome: req.params.username
+    }
+  })
     .then(user => res.json({
       sucesso: true,
       retorno: user[0]
