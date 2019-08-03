@@ -4,13 +4,19 @@ import { bindReduxForm } from '../../config/binders';
 import Input from '../divers/input';
 
 import { Field } from 'redux-form';
-import { post } from '../../config/actions';
+import { post, get } from '../../config/actions';
+import { treatUserName } from '../../treatments';
 
 const logo = require('../../assets/img/logoV2.png');
 
 function login(values) {
-
-    return post('usuario/login', 'session', { param: values });
+    
+    return post('usuario/login', 'session', { 
+        param: values, 
+        callback: get(`usuario/pornome/${values.usuario}`, 'username', {
+            treatment: treatUserName
+        })
+    });
 }
 
 function validate(values) {

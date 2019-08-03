@@ -1,7 +1,7 @@
 import { all, takeEvery } from 'redux-saga/effects';
 import _fetch from '../fetchers';
 
-function* genericFetch({ request: { method, endpoint = '', returnReduceKey, param, treatment }, callback }) {
+function* genericFetch({ request: { API, method, endpoint = '', returnReduceKey, param, treatment }, callback }) {
 
     const session = sessionStorage.getItem('session');
     const retorno = session && JSON.parse(session).retorno;
@@ -17,7 +17,7 @@ function* genericFetch({ request: { method, endpoint = '', returnReduceKey, para
     };
     if (method === 'POST' || method === 'PUT') params = { ...params, body };
     
-    yield _fetch(endpoint, returnReduceKey, params, treatment, callback);
+    yield _fetch(API, endpoint, returnReduceKey, params, treatment, callback);
 }
 
 function* watchGenericFetch() {

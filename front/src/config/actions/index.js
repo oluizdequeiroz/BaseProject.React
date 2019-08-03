@@ -1,3 +1,7 @@
+let API;
+
+export const defineApi = api => API = api;
+
 export function setValue(key, value) {
     return {
         type: 'set_value',
@@ -30,6 +34,7 @@ const request = (method, endpoint, returnReduceKey, param, treatment, callback) 
         {
             type: 'request',
             request: {
+                API,
                 method,
                 endpoint,
                 returnReduceKey,

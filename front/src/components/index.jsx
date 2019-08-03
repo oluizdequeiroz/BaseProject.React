@@ -10,8 +10,10 @@ class Index extends Component {
         const { setValue } = this.props;
 
         const session = JSON.parse(sessionStorage.getItem('session'));
+        const username = sessionStorage.getItem('username');
         if (session && session.sucesso) {
             setValue('session', session);
+            setValue('username', username);
         }
 
         if (window.location.hash !== '/') {

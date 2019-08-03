@@ -1,8 +1,8 @@
 import { put } from 'redux-saga/effects';
 
-const API = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_API_DEVELOP : process.env.REACT_APP_API_PRODUCT;
+const ApiDefault = process.env.NODE_ENV !== 'production' ? process.env.REACT_APP_API_DEVELOP : process.env.REACT_APP_API_PRODUCT;
 
-export default function* _fetch(endpoint,
+export default function* _fetch(API, endpoint,
     returnReduceKey,
     parametros = {},
     treatment,
@@ -11,7 +11,7 @@ export default function* _fetch(endpoint,
     let retorno;
 
     try {
-        const url = `${API}/${endpoint}`;
+        const url = `${API || ApiDefault}/${endpoint}`;
         const data = yield fetch(url, parametros);
         retorno = yield data.json();
 
