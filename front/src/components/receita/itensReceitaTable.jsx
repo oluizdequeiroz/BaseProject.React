@@ -30,7 +30,7 @@ export default bindDefault('itensReceitas')(({ itensReceitas }) => {
         {
             dataField: 'actions',
             text: 'Ações',
-            headerStyle: { width: 120 }
+            headerStyle: { width: 60 }
         }
     ];
 
@@ -38,7 +38,7 @@ export default bindDefault('itensReceitas')(({ itensReceitas }) => {
         ...itemReceita,
         actions: <BtnGroupActions itemReceita={itemReceita} />
     }));
-
+    
     return <BootstrapTable 
         striped 
         condensed 

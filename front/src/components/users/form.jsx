@@ -14,8 +14,8 @@ function validate(values) {
 
     const errors = {};
 
-    if (!values.usuario) {
-        errors.usuario = 'Usuário obrigatório.';
+    if (!values.nome) {
+        errors.nome = 'Usuário obrigatório.';
     }
 
     if (!values.senha) {
@@ -50,7 +50,7 @@ class UserForm extends Component {
         return (
             <form onSubmit={handleSubmit}>
                 <div className="form-inline">
-                    <Field name="usuario" component={Input} type="text" placeholder="Usuário" popoverPosition="top" />
+                    <Field name="nome" component={Input} type="text" placeholder="Usuário" popoverPosition="top" />
                     <Field name="senha" component={Input} type="password" placeholder="Senha" popoverPosition="top" />
                     <div className="btn btn-warning" onClick={this.cancelar.bind(this)}>Cancelar</div>
                 </div>

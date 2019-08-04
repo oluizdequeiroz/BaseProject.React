@@ -19,13 +19,13 @@ export default [
     },
     {
         path: '/refeicao',
-        icon: 'users',
+        icon: 'cutlery',
         name: 'Refeições',
         component: Refeicoes
     },
     {
         path: '/receita',
-        icon: 'users',
+        icon: 'list',
         name: 'Receitas',
         component: Receitas
     }

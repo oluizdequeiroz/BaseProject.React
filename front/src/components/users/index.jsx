@@ -5,6 +5,14 @@ import { bindDefault } from '../../config/binders';
 
 class Users extends Component {
 
+    componentDidMount() {
+        const { get } = this.props;
+
+        get('usuario', 'usuarios', {
+            treatment: response => response.retorno
+        });
+    }
+
     cancelar() {
         const { setValue } = this.props;
 

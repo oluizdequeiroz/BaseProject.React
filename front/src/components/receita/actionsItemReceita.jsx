@@ -3,13 +3,7 @@ import { bindDefault } from '../../config/binders';
 
 import swal from 'sweetalert2';
 
-export default bindDefault('itemReceitaDel')(({ itemReceita, setValue, del, itemReceitaDel }) => {
-
-    function editarItemReceita() {
-
-        setValue('itemReceitaRegistro');
-        setValue('itemReceita', itemReceita);
-    }   
+export default bindDefault('itemReceitaDel')(({ itemReceita, del, itemReceitaDel }) => {
 
     function deleteItemReceita(codigo) {
 
@@ -34,7 +28,6 @@ export default bindDefault('itemReceitaDel')(({ itemReceita, setValue, del, item
 
     return (
         <div className="btn-group btn-actions">
-            <div className="btn btn-primary btn-sm" onClick={editarItemReceita}>Editar</div>
             <div className="btn btn-danger btn-sm" onClick={() => deleteItemReceita(itemReceita.codigo)}>Excluir</div>
         </div>
     );

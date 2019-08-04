@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReceitaTable from './table';
-import PesquisarReceitaForm from "./PesquisarReceitaForm";
-import EditarSalvarForm from "./EditarSalvarForm";
+import PesquisarReceitaForm from "./pesquisarReceitaForm";
+import EditarSalvarForm from "./editarSalvarForm";
 import { bindDefault } from '../../config/binders';
 
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';

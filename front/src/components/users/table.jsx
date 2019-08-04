@@ -4,7 +4,7 @@ import { bindDefault } from '../../config/binders';
 import BtnGroupActions from './actions';
 import BootstrapTable from 'react-bootstrap-table-next';
 
-export default bindDefault('usuarios')(({ usuarios = require('./mock.json').usuarios /* TODO: lista de usuários mockada */ }) => {
+export default bindDefault('usuarios')(({ usuarios }) => {
 
     const columns = [
         {
@@ -13,7 +13,7 @@ export default bindDefault('usuarios')(({ usuarios = require('./mock.json').usua
             sort: true
         },
         {
-            dataField: 'usuario',
+            dataField: 'nome',
             text: 'Usuário',
             sort: true
         },

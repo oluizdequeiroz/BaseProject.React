@@ -7,6 +7,8 @@ import TableItensReceita from './itensReceitaTable';
 import { post } from '../../config/actions';
 import swal from 'sweetalert2';
 
+import ModalBuscaProdutos from './modalBuscaProdutos';
+
 function register(values) {
 
     return post('receita/salvar', 'receitaRegistro', { param: values });
@@ -34,6 +36,10 @@ function validate(values) {
 
 class ReceitaForm extends Component {
 
+    state = {
+        showModal: false
+    };
+
     componentDidMount() {
         const { dispatch, form, receita } = this.props;
 
@@ -55,48 +61,51 @@ class ReceitaForm extends Component {
         }
 
         return (
-            <form onSubmit={handleSubmit} >
-                <Accordion defaultActiveKey="0">
-                    <Card>
-                        <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey="0">DADOS GERAIS</Accordion.Toggle>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
-                                <Row>
-                                    <Col><Field name="nome" component={Input} type="text" placeholder="Nome da Receita" popoverPosition="top" /></Col>
-                                    <Col>
-                                        <Field name="unidademedida" component={Input} type="select" placeholder="Unidade de Medida" popoverPosition="top">
-                                            <option>KG</option>
-                                            <option>Litro</option>
-                                        </Field>
-                                    </Col>
-                                    <Col><Field name="quantidaderendimento" component={Input} type="text" placeholder="Quantidade de rendimento" popoverPosition="top" /></Col>
-                                </Row>
-                                <Row>
-                                    <Field name="modopreparo" component={Input} type="textarea" placeholder="Descreva o modo de preparo..." popoverPosition="top" />
-                                </Row>
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
-                    <Card>
-                        <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                                ITENS DA RECEITA
+            <div>
+                <form onSubmit={handleSubmit} >
+                    <Accordion defaultActiveKey="0">
+                        <Card>
+                            <Card.Header>
+                                <Accordion.Toggle as={Button} variant="link" eventKey="0">DADOS GERAIS</Accordion.Toggle>
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="0">
+                                <Card.Body>
+                                    <Row>
+                                        <Col><Field name="nome" component={Input} type="text" placeholder="Nome da Receita" popoverPosition="top" /></Col>
+                                        <Col>
+                                            <Field name="unidademedida" component={Input} type="select" placeholder="Unidade de Medida" popoverPosition="top">
+                                                <option>KG</option>
+                                                <option>Litro</option>
+                                            </Field>
+                                        </Col>
+                                        <Col><Field name="quantidaderendimento" component={Input} type="text" placeholder="Quantidade de rendimento" popoverPosition="top" /></Col>
+                                    </Row>
+                                    <Row>
+                                        <Field name="modopreparo" component={Input} type="textarea" placeholder="Descreva o modo de preparo..." popoverPosition="top" />
+                                    </Row>
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                        <Card>
+                            <Card.Header>
+                                <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                                    ITENS DA RECEITA
                             </Accordion.Toggle>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey="1">
-                            <Card.Body>
-                                {/* Ao clicar em pesquisar produto, abre um modal para pesquisar os produtos cadastrados e inserir na tabela abaixo */}
-                                <div className="btn btn-success"><i className="fa fa-search" /> Pesquisar Produto</div>
-                                <TableItensReceita />
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
-                </Accordion>
-                <div className="btn btn-ligth" onClick={this.voltar.bind(this)}><i className="fa fa-arrow-left" /> Voltar</div>
-                <button type="submit" className="btn btn-success"><i className="fa fa-save" /> Salvar</button>
-            </form>
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="1">
+                                <Card.Body>
+                                    {/* Ao clicar em pesquisar produto, abre um modal para pesquisar os produtos cadastrados e inserir na tabela abaixo */}
+                                    <div className="btn btn-success" onClick={() => this.setState({ showModal: true })}><i className="fa fa-search" /> Pesquisar Produto</div>
+                                    <TableItensReceita />
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                    </Accordion>
+                    <div className="btn btn-ligth" onClick={this.voltar.bind(this)}><i className="fa fa-arrow-left" /> Voltar</div>
+                    <button type="submit" className="btn btn-success"><i className="fa fa-save" /> Salvar</button>
+                </form>
+                <ModalBuscaProdutos show={this.state.showModal} onHide={() => this.setState({ showModal: false })} />
+            </div>
         );
     }
 }
