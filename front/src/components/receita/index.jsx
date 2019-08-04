@@ -57,8 +57,7 @@ class Receita extends Component {
                                                 <ReceitaTable baseProps={props.baseProps} />
                                             </div>
                                         </div>
-                                    )
-                                    }</ToolkitProvider>
+                                    )}</ToolkitProvider>
                                 </div>
                                 : <div className="card-body" />}
                         </div>
