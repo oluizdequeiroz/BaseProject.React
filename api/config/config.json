@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "sysalimento",
-    "password": "F@sysAli28*",
+    "username": "root",
+    "password": "protego",
     "database": "sysalimento",
-    "host": "186.202.152.67",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
