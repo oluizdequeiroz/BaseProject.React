@@ -1,5 +1,5 @@
 import React from 'react';
-import { bindDefault } from '../../config/binders';
+import { bindDefault } from '../../../config/binders';
 
 import BtnGroupActions from './actionsItemReceita';
 import BootstrapTable from 'react-bootstrap-table-next';
@@ -9,7 +9,7 @@ export default bindDefault('itensReceitas')(({ itensReceitas }) => {
     const columns = [
         {
             dataField: 'codigo',
-            text: 'Código do Produto',
+            text: 'Código do Item',
             sort: true
         },
         {
@@ -39,7 +39,7 @@ export default bindDefault('itensReceitas')(({ itensReceitas }) => {
         actions: <BtnGroupActions itemReceita={itemReceita} />
     }));
     
-    return <BootstrapTable 
+    return <BootstrapTable
         striped 
         condensed 
         keyField="codigo" 

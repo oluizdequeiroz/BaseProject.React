@@ -1,5 +1,5 @@
 import React from 'react';
-import { bindDefault } from '../../config/binders';
+import { bindDefault } from '../../../config/binders';
 
 import swal from 'sweetalert2';
 

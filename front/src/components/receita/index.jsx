@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReceitaTable from './table';
 import PesquisarReceitaForm from "./pesquisarReceitaForm";
-import EditarSalvarForm from "./editarSalvarForm";
+import ReceitaForm from "./receitaForm";
 import { bindDefault } from '../../config/binders';
 
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';
@@ -71,7 +71,7 @@ class Receita extends Component {
                                 <h4 className="card-title">{(novaReceita || receita) ? `${novaReceita ? 'Cadastrar' : 'Editar'} Receita` : 'Selecione uma receita acima ou clique em Nova Receita...'}</h4>
                             </div>
                             <div className="card-body">
-                                {(novaReceita || receita) && <EditarSalvarForm key={receita && receita.codigo} cancelar={this.cancelar.bind(this)} onNovaReceita={this.setNovaReceita.bind(this)} />}
+                                {(novaReceita || receita) && <ReceitaForm key={receita && receita.codigo} cancelar={this.cancelar.bind(this)} onNovaReceita={this.setNovaReceita.bind(this)} />}
                             </div>
                         </div>
                     </div>

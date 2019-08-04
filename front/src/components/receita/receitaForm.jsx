@@ -3,11 +3,11 @@ import { Accordion, Card, Button, Row, Col } from 'react-bootstrap';
 import { bindReduxForm } from '../../config/binders';
 import { Field, initialize } from 'redux-form';
 import Input from '../divers/input';
-import TableItensReceita from './itensReceitaTable';
+import ItensReceitaTable from './itemReceita/itensReceitaTable';
 import { post } from '../../config/actions';
 import swal from 'sweetalert2';
 
-import ModalBuscaProdutos from './modalBuscaProdutos';
+import ModalBuscaProdutos from './itemReceita/modalBuscaProdutos';
 
 function register(values) {
 
@@ -96,7 +96,7 @@ class ReceitaForm extends Component {
                                 <Card.Body>
                                     {/* Ao clicar em pesquisar produto, abre um modal para pesquisar os produtos cadastrados e inserir na tabela abaixo */}
                                     <div className="btn btn-success" onClick={() => this.setState({ showModal: true })}><i className="fa fa-search" /> Pesquisar Produto</div>
-                                    <TableItensReceita />
+                                    <ItensReceitaTable />
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>

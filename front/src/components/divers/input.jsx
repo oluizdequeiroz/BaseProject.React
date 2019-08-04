@@ -1,7 +1,7 @@
 import React from 'react';
 import { Popover } from 'reactstrap';
 
-export default ({ input, type, placeholder, meta: { touched, error, warning }, list, popoverPosition, children }) => {
+export default ({ input = {}, type, placeholder, meta: { touched, error, warning } = {}, list, popoverPosition, children }) => {
     const inputProps = { type, placeholder, list };
 
     input.id = input.name;
