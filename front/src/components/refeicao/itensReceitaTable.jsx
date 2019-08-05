@@ -4,29 +4,32 @@ import { bindDefault } from '../../config/binders';
 import BtnGroupActions from './actions';
 import BootstrapTable from 'react-bootstrap-table-next';
 
-import paginationFactory from 'react-bootstrap-table2-paginator';
-
-export default bindDefault('refeicoes')(({ refeicoes = require('./mock.json').refeicoes }) => {
+export default bindDefault('refeicao')(({ refeicoes }) => {
 
     const columns = [
         {
             dataField: 'codigo',
-            text: 'Código',
+            text: 'Código do Produto',
             sort: true
         },
         {
-            dataField: 'cliente',
-            text: 'Cliente',
+            dataField: 'produto',
+            text: 'Nome do Produto',
             sort: true
         },
         {
-            dataField: 'diaRefeicao',
-            text: 'Dia da refeição',
+            dataField: 'medida',
+            text: 'Unidade de Medida',
             sort: true
         },
         {
-            dataField: 'tipoRefeicao',
-            text: 'Tipo da refeição',
+            dataField: 'qtdliquida',
+            text: 'Quantidade Liquida',
+            sort: true
+        },
+        {
+            dataField: 'perdaBruta',
+            text: '% Perda Bruta',
             sort: true
         },
         {
@@ -41,5 +44,5 @@ export default bindDefault('refeicoes')(({ refeicoes = require('./mock.json').re
         actions: <BtnGroupActions refeicao={refeicao} />
     }));
 
-    return <BootstrapTable striped condensed keyField="codigo" data={_refeicoes} columns={columns} noDataIndication={_refeicoes ? 'Não há refeições!' : <i className="fa fa-cog fa-2x fa-spin fa-fw" />} pagination={paginationFactory()} />
+    return <BootstrapTable striped condensed keyField="codigo" data={_refeicoes} columns={columns} noDataIndication={_refeicoes ? 'Pesquise os itens da refeição!' : <i className="fa fa-cog fa-2x fa-spin fa-fw" />} />
 });

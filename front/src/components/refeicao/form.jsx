@@ -17,6 +17,7 @@ function validate(values) {
     if (!values.refeicao) {
         errors.refeicao = 'Refeição é obrigatório.';
     }
+
    
     return errors;
 }
@@ -40,7 +41,7 @@ class RefeicaoForm extends Component {
         const { handleSubmit, refeicaoRegistro } = this.props;
 
         if (refeicaoRegistro && refeicaoRegistro.stack) {
-            swal.fire('Erro ao tentar registrar!', 'O sistema acionou uma exceção ao tentar registrar um usuário.', 'error');
+            swal.fire('Erro ao tentar registrar!', 'O sistema acionou uma exceção ao tentar registrar uma refeição.', 'error');
         }
 
         return (
@@ -56,4 +57,4 @@ class RefeicaoForm extends Component {
     }
 }
 
-export default bindReduxForm('usuario', 'refeicaoRegistro')(register)(validate)(RefeicaoForm);
+export default bindReduxForm('refeicao', 'refeicaoRegistro')(register)(validate)(RefeicaoForm);

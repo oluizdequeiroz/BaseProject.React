@@ -19,7 +19,43 @@
 .card {
   font-size: .875rem;
 }
-
+.gridDiaSemana{
+  text-align: center;
+  background: #23a6ee;
+  color: #fff;
+}
+.gridCliente{
+  width: 100%;
+  /* float: left; */
+ 
+}
+.gridDia{
+  width: 14%;
+  float: left;
+  border: 1px solid #e6e6e6;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.gridDia div{
+  text-align: center;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 18px;
+  padding: 4px;
+ 
+}
+.gridDia .receita{
+padding: 12px;
+}
+.gridCliente div{
+  text-align: center;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 18px;
+  padding: 4px;
+}
+.gridTerca{
+  width: 12%;
+  float: left;
+}
 *,
 *::before,
 *::after {

@@ -3,13 +3,13 @@ import { bindDefault } from '../../config/binders';
 
 import swal from 'sweetalert2';
 
-export default bindDefault('refeicaoDel')(({ refeicao, setValue, del, refeicaoDel }) => {
+export default bindDefault('receitaDel')(({ refeicao, setValue, del, refeicaoDel }) => {
 
     function editarRefeicao() {
 
         setValue('refeicaoRegistro');
         setValue('refeicao', refeicao);
-    }
+    }   
 
     function deleteRefeicao(codigo) {
 
