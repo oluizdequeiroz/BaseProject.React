@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import RefeicaoTable from './table';
+// import RefeicaoTable from './table';
 import PesquisarRefeicaoForm from "./PesquisarRefeicaoForm";
-import EditarSalvarForm from "./EditarSalvarForm";
+// import EditarSalvarForm from "./EditarSalvarForm";
 import { bindDefault } from '../../config/binders';
 
 class Refeicao extends Component {

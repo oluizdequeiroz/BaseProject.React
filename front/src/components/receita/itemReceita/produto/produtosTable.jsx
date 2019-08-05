@@ -30,7 +30,7 @@ export default bindDefault('produtos')(({ produtos, buscando, setValue, whenSele
             const novoItem = {
                 codigo: 'NOVO',
                 codigoProduto: row.codigo,
-                produto: row.nome       
+                produto: row.nome
             };
             setValue('novoItem', novoItem);
             whenSelect();

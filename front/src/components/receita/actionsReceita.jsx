@@ -7,7 +7,7 @@ export default bindDefault('receitaDel')(({ receita, setValue, del, receitaDel, 
     useEffect(() => {
         if (receitaDel) {
             if (receitaDel.sucesso) {
-                get('receitas', 'receitas', { treatment: (response) => response.retorno });
+                get('receita', 'receitas', { treatment: (response) => response.retorno });
                 swal.fire('Receita excluida com sucesso!', undefined, 'success');
             } else if (receitaDel.stack) {
                 swal.fire('Erro ao tentar excluir!', 'O sistema acionou uma exceção na tentativa de excluir a receita!', 'error');
@@ -36,7 +36,7 @@ export default bindDefault('receitaDel')(({ receita, setValue, del, receitaDel, 
             confirmButtonText: 'Sim'
         }).then(({ value }) => {
             if (value) {
-                del(`receitas/excluir/${codigo}`, 'receitaDel');
+                del(`receita/excluir/${codigo}`, 'receitaDel');
             }
         });
     }

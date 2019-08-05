@@ -11,7 +11,7 @@ import ModalBuscaProdutos from './itemReceita/modalBuscaProdutos';
 
 function register(values) {
 
-    return post('receitas/salvar', 'receitaRegistro', { param: values });
+    return post('receita/salvar', 'receitaRegistro', { param: values });
 }
 
 function validate(values) {
@@ -41,7 +41,7 @@ export default bindReduxForm('receita', 'receitaRegistro')(register)(validate)((
         dispatch(initialize(form, receita));
         if (receitaRegistro) {
             if (receitaRegistro.sucesso) {
-                get('receitas', 'receitas', { treatment: (response) => response.retorno });
+                get('receita', 'receitas', { treatment: (response) => response.retorno });
                 swal.fire('Receita salva com sucesso!', 'Os dados da receita foram salvos com sucesso!', 'success');
             } else if (receitaRegistro.stack) {
                 swal.fire('Erro ao tentar registrar!', 'O sistema acionou uma exceção ao tentar registrar uma receita.', 'error');
@@ -77,7 +77,7 @@ export default bindReduxForm('receita', 'receitaRegistro')(register)(validate)((
                                     <Col><Field name="quantidaderendimento" component={Input} type="text" placeholder="Quantidade de rendimento" popoverPosition="top" /></Col>
                                 </Row>
                                 <Row>
-                                    <Field name="modopreparo" component={Input} type="textarea" placeholder="Descreva o modo de preparo..." popoverPosition="top" />
+                                    <Field name="modopreparo" component={Input} type="textarea" placeholder="Descreva o modo de preparo..." popoverPosition="bottom" />
                                 </Row>
                             </Card.Body>
                         </Accordion.Collapse>

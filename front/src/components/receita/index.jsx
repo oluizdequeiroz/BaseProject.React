@@ -16,7 +16,7 @@ class Receita extends Component {
     componentDidMount() {
         const { get } = this.props;
 
-        get('receitas', 'receitas', { treatment: (response) => response.retorno });
+        get('receita', 'receitas', { treatment: (response) => response.retorno });
     }
 
     cancelar() {
