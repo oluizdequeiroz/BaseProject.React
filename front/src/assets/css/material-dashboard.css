@@ -19,6 +19,17 @@
 .card {
   font-size: .875rem;
 }
+.iconFechar{
+  color: #ff4949;
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  font-size: 16px;
+  background: white;
+  border-radius: 50%;
+  padding: 1px 3px;
+  border: 1px solid;
+}
 .gridDiaSemana{
   text-align: center;
   background: #23a6ee;
@@ -27,6 +38,7 @@
 .gridCliente{
   width: 100%;
   /* float: left; */
+  margin-bottom: 42px;
  
 }
 .gridDia{

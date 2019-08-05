@@ -54,7 +54,7 @@ class Refeicao extends Component {
                                             
                                            {/* Segunda */}
                                            <div className="gridDia">
-                                                <div  className="card-header card-header-primary gridDiaSemana">01/02/19</div>
+                                                <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
                                                 <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
@@ -62,7 +62,7 @@ class Refeicao extends Component {
                                             </div>
                                            {/* Terça */}
                                            <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19</div>
+                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
                                            <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
@@ -70,7 +70,7 @@ class Refeicao extends Component {
                                             
                                            {/* Quarta */}
                                            <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19</div>
+                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
                                            <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
@@ -78,7 +78,7 @@ class Refeicao extends Component {
                                             
                                            {/* Quinta */}
                                            <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19</div>
+                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
                                            <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
@@ -86,7 +86,7 @@ class Refeicao extends Component {
                                             
                                            {/* Sexta */}
                                            <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19</div>
+                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
                                            <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
@@ -94,7 +94,7 @@ class Refeicao extends Component {
                                             
                                            {/* Sábado */}
                                            <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19</div>
+                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
                                            <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
                                                 <div className="receita" >01 </div>
@@ -102,7 +102,7 @@ class Refeicao extends Component {
                                             
                                            {/* Domingo */}
                                            <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19</div>
+                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
                                                 <div className="receita">01 </div>
                                                 <div className="receita">01 </div>
                                                 <div className="receita" >01 </div>
@@ -110,10 +110,15 @@ class Refeicao extends Component {
                                             
                                        </div>
                                     </div>
+                                    <div style={{marginTop: '20px', marginBottom: '20px'}}>
+                                        <div className="btn btn-success" ><i className="fa fa-save" /> Salvar</div>
+                                        <div className="btn btn-primary" ><i className="fa fa-print" /> Imprimir Cardápio</div>
+                                    </div>
                                 </div>
                             : <div className="card-body" />}
                         </div>
                     </div>
+                   
                 </div>
                
             </div>
