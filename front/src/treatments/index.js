@@ -3,3 +3,5 @@ export const treatUserName = (response) => {
     sessionStorage.setItem('username', username);
     return username;
 }
+
+export const treatDefault = response => response.retorno;

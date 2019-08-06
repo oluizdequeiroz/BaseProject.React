@@ -5,12 +5,11 @@ import { get } from '../../../config/actions';
 
 import { Field, initialize } from 'redux-form';
 import Input from '../../divers/input';
+import { treatDefault as treatment } from '../../../treatments';
 
 import ProdutosTable from './produto/produtosTable';
 
 function pesquisar(values) {
-
-    const treatment = response => response.retorno;
 
     if (values.codigo) {
         return get(`produtos/${values.codigo}`, 'produtos', { treatment });

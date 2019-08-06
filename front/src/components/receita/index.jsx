@@ -5,6 +5,7 @@ import ReceitaForm from "./receitaForm";
 import { bindDefault } from '../../config/binders';
 
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';
+import { treatDefault as treatment } from '../../treatments';
 
 class Receita extends Component {
 
@@ -16,7 +17,7 @@ class Receita extends Component {
     componentDidMount() {
         const { get } = this.props;
 
-        get('receita', 'receitas', { treatment: (response) => response.retorno });
+        get('receita', 'receitas', { treatment });
     }
 
     cancelar() {

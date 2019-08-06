@@ -4,14 +4,15 @@ import { bindReduxForm } from '../../config/binders';
 import { Field, initialize } from 'redux-form';
 import Input from '../divers/input';
 import ItensReceitaTable from './itemReceita/itensReceitaTable';
-import { post } from '../../config/actions';
+import { post, setValue } from '../../config/actions';
 import swal from 'sweetalert2';
 
 import ModalBuscaProdutos from './itemReceita/modalBuscaProdutos';
+import { treatDefault as treatment } from '../../treatments';
 
 function register(values) {
 
-    return post('receita/salvar', 'receitaRegistro', { param: values });
+    return post('receita/salvar', 'receitaRegistro', { param: values, callback: setValue('receita', values) });
 }
 
 function validate(values) {
@@ -36,12 +37,12 @@ function validate(values) {
 
 export default bindReduxForm('receita', 'receitaRegistro')(register)(validate)(({ dispatch, form, receita, cancelar, handleSubmit, receitaRegistro, get, setValue }) => {
     const [showModal, setShowModal] = useState(false);
-    
+
     useEffect(() => {
         dispatch(initialize(form, receita));
         if (receitaRegistro) {
             if (receitaRegistro.sucesso) {
-                get('receita', 'receitas', { treatment: (response) => response.retorno });
+                get('receita', 'receitas', { treatment });
                 swal.fire('Receita salva com sucesso!', 'Os dados da receita foram salvos com sucesso!', 'success');
             } else if (receitaRegistro.stack) {
                 swal.fire('Erro ao tentar registrar!', 'O sistema acionou uma exceção ao tentar registrar uma receita.', 'error');

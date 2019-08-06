@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { bindDefault } from '../../config/binders';
 
 import swal from 'sweetalert2';
+import { treatDefault as treatment } from '../../treatments';
 
 export default bindDefault('receitaDel')(({ receita, setValue, del, receitaDel, get }) => {
+    
     useEffect(() => {
         if (receitaDel) {
             if (receitaDel.sucesso) {
-                get('receita', 'receitas', { treatment: (response) => response.retorno });
+                get('receita', 'receitas', { treatment });
                 swal.fire('Receita excluida com sucesso!', undefined, 'success');
             } else if (receitaDel.stack) {
                 swal.fire('Erro ao tentar excluir!', 'O sistema acionou uma exceção na tentativa de excluir a receita!', 'error');
@@ -20,10 +22,8 @@ export default bindDefault('receitaDel')(({ receita, setValue, del, receitaDel, 
     function editarReceita() {
         setValue('receitaRegistro');
         setValue('receita', receita);
-        get(`itensreceitas/${receita.codigo}`, 'itensReceitas', {
-            treatment: response => response.retorno
-        });
-    }   
+        get(`itensreceitas/${receita.codigo}`, 'itensReceitas', { treatment });
+    }
 
     function deleteReceita(codigo) {
         swal.fire({
