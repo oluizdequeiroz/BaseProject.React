@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import routes from '../routes';
 import { Link } from 'react-router-dom';
 
-const logo = require('../../assets/img/pmenosLogo.JPG');
+const logo = require('../../assets/img/logoV2.png');
 
 class Menu extends Component {
 
     state = {
         actived: '/'
-    }
+    };
 
     isActived = path => this.state.actived === path;
     clickRouteItem = path => this.setState({ actived: path });
