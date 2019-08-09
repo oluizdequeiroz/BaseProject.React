@@ -2,6 +2,7 @@ import Home from './home';
 import Users from './users';
 import Refeicoes from './refeicao';
 import Receitas from './receita';
+import MapaProducao from './mapaProducao';
 
 export default [
     {
@@ -28,5 +29,11 @@ export default [
         icon: 'list',
         name: 'Receitas',
         component: Receitas
+    },
+    {
+        path: '/mapaProducao',
+        icon: 'list',
+        name: 'Mapa',
+        component: MapaProducao
     }
 ];

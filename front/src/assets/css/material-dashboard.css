@@ -15,7 +15,10 @@
  
 
 /*     brand Colors              */
-
+.colcliente{
+  background: #000;
+  color: #fff
+}
 .card {
   font-size: .875rem;
 }

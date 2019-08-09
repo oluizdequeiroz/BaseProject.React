@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PesquisarRefeicaoForm from "./PesquisarRefeicaoForm";
 // import EditarSalvarForm from "./EditarSalvarForm";
 import { bindDefault } from '../../config/binders';
-
+var data = new Date();
 class Refeicao extends Component {
 
     state = {
@@ -22,10 +22,89 @@ class Refeicao extends Component {
     setNovaRefeicao(flag) {
         this.setState({ novaRefeicao: flag });
     }
+    pesquisar() {
+        let grids = [];
 
+        for (let i = 0; i < 7; i++) {
+            grids.push(
+                <div className="gridDia">
+                    <div className="card-header card-header-primary gridDiaSemana">{new Date() + i} <i className="fa fa-close iconFechar" /></div>
+                    <div className="receita" >cliente {i} </div>
+                    <div className="receita" >01 </div>
+                </div>
+            );
+        }
+
+        return grids;
+    }
     render() {
         const { refeicao } = this.props;
         const { novaRefeicao } = this.state;
+
+        const clienteComRefeicoes = {
+            nomeCliente: 'Teste',
+            dias: [
+                {
+                    data: new Date().getDate(),
+                    refeicoes: [
+                        {
+                            nome: `refeição ${new Date().getDay()}`
+                        }
+                    ]
+                },
+                {
+                    data: new Date().getDate(),
+                    refeicoes: [
+                        {
+                            nome: `refeição ${new Date().getDay() + 1}`
+                        }
+                    ]
+                },
+                {
+                    data: new Date().getDate(),
+                    refeicoes: [
+                        {
+                            nome: `refeição ${new Date().getDay() + 2}`
+                        }
+                    ]
+                },
+                {
+                    data: new Date().getDate(),
+                    refeicoes: [
+                        {
+                            nome: `refeição ${new Date().getDay() + 3}`
+                        }
+                    ]
+                },
+                {
+                    data: new Date().getDate(),
+                    refeicoes: undefined
+                    // [
+                    //     {
+                    //         nome: `refeição ${new Date().getDay() + 4}` 
+                    //     }
+                    // ]
+                },
+                {
+                    data: new Date().getDate(),
+                    refeicoes: undefined
+                    // [
+                    //     {
+                    //         nome: `refeição ${new Date().getDay() + 4}` 
+                    //     }
+                    // ]
+                },
+                {
+                    data: new Date().getDate(),
+                    refeicoes: undefined
+                    // [
+                    //     {
+                    //         nome: `refeição ${new Date().getDay() + 4}` 
+                    //     }
+                    // ]
+                }
+            ]
+        };
 
         const propsCollapse = {
             style: (novaRefeicao || refeicao) && { cursor: 'pointer' },
@@ -43,84 +122,38 @@ class Refeicao extends Component {
                             {(!novaRefeicao && !refeicao) || this.state.visible ?
                                 <div className="card-body">
                                     <PesquisarRefeicaoForm key={refeicao && refeicao.codigo} onNovaReceita={this.setNovaRefeicao.bind(this)} />
-                                    <div style={{ marginTop: '40px', marginBottom: '50px'}}>
-                                       {/* Grid para cardapio */}
-                                       <div>
-                                           {/* Clintes */}
-                                           <div className="gridCliente">
-                                                <div>cliente escolhido</div>
-                                                
+                                    <div style={{ marginTop: '40px', marginBottom: '50px' }}>
+                                        {/* Grid para cardapio */}
+                                        <div>
+                                            {/* Clintes */}
+                                            <div className="gridCliente">
+                                                <div>cliente escolhido: {clienteComRefeicoes.nomeCliente}</div>
+
                                             </div>
-                                            
-                                           {/* Segunda */}
-                                           <div className="gridDia">
-                                                <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
-                                                <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                                
-                                            </div>
-                                           {/* Terça */}
-                                           <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
-                                           <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                            </div>
-                                            
-                                           {/* Quarta */}
-                                           <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
-                                           <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                            </div>
-                                            
-                                           {/* Quinta */}
-                                           <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
-                                           <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                            </div>
-                                            
-                                           {/* Sexta */}
-                                           <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
-                                           <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                            </div>
-                                            
-                                           {/* Sábado */}
-                                           <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
-                                           <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                                <div className="receita" >01 </div>
-                                            </div>
-                                            
-                                           {/* Domingo */}
-                                           <div className="gridDia">
-                                           <div  className="card-header card-header-primary gridDiaSemana">01/02/19 <i className="fa fa-close iconFechar" /></div>
-                                                <div className="receita">01 </div>
-                                                <div className="receita">01 </div>
-                                                <div className="receita" >01 </div>
-                                            </div>
-                                            
-                                       </div>
+                                            {clienteComRefeicoes.dias && clienteComRefeicoes.dias.map(dia => (
+                                                <div className="gridDia">
+                                                    <div className="card-header card-header-primary gridDiaSemana">{dia.data} <i className="fa fa-close iconFechar" /></div>
+                                                    {dia.refeicoes ? dia.refeicoes.map(refeicao => (
+                                                        <div className="receita" >{refeicao.nome}</div>
+                                                    )) :
+                                                        <div className="receita" >
+                                                            <div className="btn btn-success">Add</div>
+                                                        </div>}
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                    <div style={{marginTop: '20px', marginBottom: '20px'}}>
+                                    <div style={{ marginTop: '20px', marginBottom: '20px' }}>
                                         <div className="btn btn-success" ><i className="fa fa-save" /> Salvar</div>
                                         <div className="btn btn-primary" ><i className="fa fa-print" /> Imprimir Cardápio</div>
                                     </div>
                                 </div>
-                            : <div className="card-body" />}
+                                : <div className="card-body" />}
                         </div>
                     </div>
-                   
+
                 </div>
-               
+
             </div>
         );
     }

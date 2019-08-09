@@ -71,7 +71,7 @@ class PesquisarRefeicaoForm extends Component {
                         </Field>
                     </Col>
                 </Row>
-                <button type="submit" className="btn btn-info"><i className="fa fa-search" /> Pesquisar</button>
+                <button type="submit" className="btn btn-info" ><i className="fa fa-search" /> Pesquisar</button>
                 <div className="btn btn-light" onClick={this.limpar.bind(this)}><i className="fa fa-eraser" /> Limpar</div>
                 <div className="btn btn-success" onClick={() => onNovaRefeicao(true)}><i className="fa fa-plus" /> Nova Refeição</div>
             </form>
