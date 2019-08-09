@@ -132,12 +132,16 @@ class Refeicao extends Component {
                                             </div>
                                             {clienteComRefeicoes.dias && clienteComRefeicoes.dias.map(dia => (
                                                 <div className="gridDia">
-                                                    <div className="card-header card-header-primary gridDiaSemana">{dia.data} <i className="fa fa-close iconFechar" /></div>
+                                                    <div className="card-header card-header-primary gridDiaSemana">{dia.data} </div>
                                                     {dia.refeicoes ? dia.refeicoes.map(refeicao => (
-                                                        <div className="receita" >{refeicao.nome}</div>
+                                                        <div className="receita" >
+                                                            {refeicao.nome} 
+                                                            <i className="fa fa-edit iconEditar" />
+                                                            <i className="fa fa-close iconFechar" />
+                                                          </div>
                                                     )) :
                                                         <div className="receita" >
-                                                            <div className="btn btn-success">Add</div>
+                                                            <div className="btn btn-block btn-add btn-success">Adicionar</div>
                                                         </div>}
                                                 </div>
                                             ))}

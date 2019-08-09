@@ -22,16 +22,39 @@
 .card {
   font-size: .875rem;
 }
+.btn-add{
+  font-size: 12px !important;
+    margin-top: -2px !important; 
+    padding-bottom: 2px !important;
+    position: relative !important;
+    top: 1px !important;
+    max-width: 95% !important;
+    text-align: center !important;
+    margin: auto !important;
+}
 .iconFechar{
-  color: #ff4949;
-  position: absolute;
-  top: -9px;
-  right: -9px;
-  font-size: 16px;
+  color: #adadad;
+  /* top: -9px; */
+  font-size: 14px;
   background: white;
-  border-radius: 50%;
-  padding: 1px 3px;
-  border: 1px solid;
+  margin-right: 1px;
+  position: relative;
+  left: 45px;
+}
+.iconFechar:hover{
+  color: red;
+}
+.iconEditar{
+  color: #adadad;
+  /* position: absolute; */
+  /* top: -9px; */
+  font-size: 14px;
+  background: white;
+  position: relative;
+  left: 40px;
+}
+.iconEditar:hover{
+  color: #00bcd4;
 }
 .gridDiaSemana{
   text-align: center;
