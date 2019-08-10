@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import PesquisarRefeicaoForm from "./PesquisarRefeicaoForm";
 // import EditarSalvarForm from "./EditarSalvarForm";
 import { bindDefault } from '../../config/binders';
-var data = new Date();
 class Refeicao extends Component {
 
     state = {
@@ -22,21 +21,7 @@ class Refeicao extends Component {
     setNovaRefeicao(flag) {
         this.setState({ novaRefeicao: flag });
     }
-    pesquisar() {
-        let grids = [];
 
-        for (let i = 0; i < 7; i++) {
-            grids.push(
-                <div className="gridDia">
-                    <div className="card-header card-header-primary gridDiaSemana">{new Date() + i} <i className="fa fa-close iconFechar" /></div>
-                    <div className="receita" >cliente {i} </div>
-                    <div className="receita" >01 </div>
-                </div>
-            );
-        }
-
-        return grids;
-    }
     render() {
         const { refeicao } = this.props;
         const { novaRefeicao } = this.state;
@@ -127,18 +112,17 @@ class Refeicao extends Component {
                                         <div>
                                             {/* Clintes */}
                                             <div className="gridCliente">
-                                                <div>cliente escolhido: {clienteComRefeicoes.nomeCliente}</div>
-
+                                                <div>{clienteComRefeicoes.nomeCliente}</div>
                                             </div>
                                             {clienteComRefeicoes.dias && clienteComRefeicoes.dias.map(dia => (
                                                 <div className="gridDia">
                                                     <div className="card-header card-header-primary gridDiaSemana">{dia.data} </div>
                                                     {dia.refeicoes ? dia.refeicoes.map(refeicao => (
                                                         <div className="receita" >
-                                                            {refeicao.nome} 
+                                                            {refeicao.nome}
                                                             <i className="fa fa-edit iconEditar" />
                                                             <i className="fa fa-close iconFechar" />
-                                                          </div>
+                                                        </div>
                                                     )) :
                                                         <div className="receita" >
                                                             <div className="btn btn-block btn-add btn-success">Adicionar</div>

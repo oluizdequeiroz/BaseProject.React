@@ -7,7 +7,7 @@ import { Field } from 'redux-form';
 import { post, get } from '../../config/actions';
 import { treatUserName } from '../../treatments';
 
-const logo = require('../../assets/img/pmenosLogo.JPG');
+const logo = require('../../assets/img/logoV2.png');
 
 function login(values) {
     

@@ -36,7 +36,7 @@ class Index extends Component {
     render() {
         const { session } = this.props;
 
-        return true ? this.props.children : <Login />;
+        return session && session.retorno ? this.props.children : <Login />;
     }
 }
 

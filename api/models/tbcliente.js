@@ -1,30 +1,36 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tbcliente', {
-    clinumsequencial: {
+  return sequelize.define('cliente', {
+    numsequencial: {
+      field: 'clinumsequencial',
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    clinome: {
+    nome: {
+      field: 'clinome',
       type: DataTypes.STRING(100),
       allowNull: true
     },
-    clicpf: {
+    cpf: {
+      field: 'clicpf',
       type: DataTypes.STRING(100),
       allowNull: true
     },
-    clicnpj: {
+    cnpj: {
+      field: 'clicnpj',
       type: DataTypes.STRING(100),
       allowNull: true
     },
-    clitelefone: {
+    telefone: {
+      field: 'clitelefone',
       type: DataTypes.STRING(100),
       allowNull: true
     },
-    cliendereco: {
+    endereco: {
+      field: 'cliendereco',
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -32,7 +38,8 @@ module.exports = function(sequelize, DataTypes) {
         key: 'endnumsequencial'
       }
     },
-    clienderecoentrega: {
+    enderecoentrega: {
+      field: 'clienderecoentrega',
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -40,7 +47,8 @@ module.exports = function(sequelize, DataTypes) {
         key: 'endnumsequencial'
       }
     },
-    clipesrepresentante: {
+    pesrepresentante: {
+      field: 'clipesrepresentante',
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
