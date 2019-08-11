@@ -20,11 +20,11 @@ function validate(values) {
     }
 
     if (!values.dataInicial) {
-        errors.dataInicial = 'Informe a data inicial.'
+        errors.dataInicial = 'Informe a data inicial.';
     }
 
     if (!values.dataFinal) {
-        errors.dataFinal = 'Informe a data inicial.'
+        errors.dataFinal = 'Informe a data inicial.';
     }
 
     return errors;
@@ -53,7 +53,7 @@ class PesquisarRefeicaoForm extends Component {
                     <Col style={{ float: 'left', maxWidth: '30%' }}>
                         <Field name="clienteRefeicao" component={Input} type="select" placeholder="Cliente" popoverPosition="top">
                             {clientes && clientes.map((cliente, index) => (
-                                <option key={index} value={cliente.numSequencial}>{cliente.nome}</option>
+                                <option key={index} value={cliente.numsequencial}>{cliente.nome}</option>
                             ))}
                         </Field>
                     </Col>

@@ -16,28 +16,27 @@ router.get('/', (req, res, next) => {
     }))
 });
 
-router.get('/refeicoes/:codigoCliente', (req, res, next) => {
+router.get('/refeicoes/:codigoCliente/:dataInicial/:dataFinal', (req, res, next) => {
   models.cliente.findAll({
     include: [{
       model: models.refeicao,
-      as: 'dias',
-      include: [{
-        model: models.itemrefeicao,
-        as: 'refeicoes',
-        include: {
-          model: models.receita,
-          as: 'receita'
-        }
-      }]
+      as: 'dias'
     }],
     where: {
-      numsequencial: req.params.codigoCliente
+      numsequencial: req.params.codigoCliente,
+      datarefeicao: {
+        '$Between': [req.params.dataInicial, req.params.dataFinal]
+      }
     }
   })
-    .then(clientes => res.json({
-      sucesso: true,
-      retorno: clientes[0]
-    }))
+    .then(clientes =>
+      res.json({
+        sucesso: true,
+        retorno: {
+          ...clientes[0].dataValues,
+          dias: clientes[0].dias.groupBy('datarefeicao', 'refeicoes')
+        }
+      }))
     .then(error => res.json({
       stack: error,
       erros: [

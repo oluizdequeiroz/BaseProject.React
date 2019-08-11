@@ -39,7 +39,6 @@
   background: white;
   margin-right: 1px;
   position: relative;
-  left: 45px;
 }
 .iconFechar:hover{
   color: red;
@@ -51,7 +50,6 @@
   font-size: 14px;
   background: white;
   position: relative;
-  left: 40px;
 }
 .iconEditar:hover{
   color: #00bcd4;
@@ -74,6 +72,10 @@
   margin-left: 2px;
   margin-right: 2px;
 }
+.gridDia .group-buttons {
+  border-bottom: none;
+}
+
 .gridDia div{
   text-align: center;
   border-bottom: 1px solid #e6e6e6;
@@ -81,9 +83,9 @@
   padding: 4px;
  
 }
-.gridDia .receita{
+/* .gridDia .refeicao{
 padding: 12px;
-}
+} */
 .gridCliente div{
   text-align: center;
   border-bottom: 1px solid #e6e6e6;

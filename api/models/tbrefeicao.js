@@ -41,7 +41,7 @@ module.exports = function (sequelize, DataTypes) {
       },
       datarefeicao: {
         field: 'refdatarefeicao',
-        type: DataTypes.STRING(10),
+        type: DataTypes.DATE,
         allowNull: true
       }
     },
