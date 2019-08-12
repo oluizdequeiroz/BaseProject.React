@@ -1,0 +1,50 @@
+import React from 'react';
+import { bindDefault } from '../../config/binders';
+import { formatDate } from '../../utils';
+
+let count = 0;
+
+export default bindDefault('clienteComRefeicoes')(({ clienteComRefeicoes }) => {
+
+    return (
+        <div style={{ marginTop: '40px', marginBottom: '50px' }}>
+            {/* Grid para cardapio */}
+            <div>
+                {/* Clintes */}
+                <div className="gridCliente">
+                    <div>{clienteComRefeicoes && clienteComRefeicoes.nome}</div>
+                </div>
+                {clienteComRefeicoes && clienteComRefeicoes.dias && clienteComRefeicoes.dias.map((dia, index) => {
+                    count++;
+
+                    const diaView = (
+                        <>
+                            <div key={index} className="gridDia">
+                                <div className="card-header card-header-primary gridDiaSemana">
+                                    {formatDate(dia.datarefeicao)}
+                                </div>
+                                {dia.refeicoes && dia.refeicoes.map((refeicao, jndex) => (
+                                    <div key={jndex} className="btn-group pull-right group-buttons">
+                                        <div className="btn btn-link">{refeicao.tiporefeicao}</div>
+                                        <div className="btn btn-link"><i className="fa fa-edit iconEditar" /></div>
+                                        <div className="btn btn-link"><i className="fa fa-close iconFechar" /></div>
+                                    </div>
+                                ))}
+                                <div className="card-body">
+                                    <div className="btn btn-add btn-add-block btn-success">Adicionar</div>
+                                </div>
+                            </div>
+                            {count === 7 &&
+                                <div className="col-md-12 content-is-hr">
+                                    <hr />
+                                </div>}
+                        </>
+                    );
+
+                    count = count === 7 ? 0 : count;
+                    return diaView;
+                })}
+            </div>
+        </div>
+    );
+});

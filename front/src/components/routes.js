@@ -19,7 +19,7 @@ export default [
         component: Users
     },
     {
-        path: '/refeicao',
+        path: '/refeicoes',
         icon: 'cutlery',
         name: 'Refeições',
         component: Refeicoes
@@ -32,7 +32,7 @@ export default [
     },
     {
         path: '/mapaProducao',
-        icon: 'list',
+        icon: 'map',
         name: 'Mapa',
         component: MapaProducao
     }

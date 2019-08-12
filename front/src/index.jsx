@@ -24,7 +24,7 @@ ReactDOM.render(
                 <Panel>
                     <Switch>
                         {routes.map((route, index) =>
-                            <Route exact={route.exact} key={index} path={route.path} component={route.component} />
+                            <Route key={index} {...route} />
                         )}
                     </Switch>
                 </Panel>

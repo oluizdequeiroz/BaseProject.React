@@ -3,7 +3,6 @@
  */
 export function formatDate(dateTime) {
     if (dateTime) {
-        debugger;
         const date = new Date(dateTime);
         let day = date.getDate() + 1;
         let month = date.getMonth() + 1;
