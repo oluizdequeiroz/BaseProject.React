@@ -2,13 +2,7 @@
  * Formatar a data
  */
 export function formatDate(dateTime) {
-    if (dateTime) {
-        const date = new Date(dateTime);
-        let day = date.getDate() + 1;
-        let month = date.getMonth() + 1;
-        month = month < 10 ? `0${month}` : month;
-        day = day < 10 ? `0${day}` : day;
-        return `${day}`.concat('/', month, '/', date.getFullYear());
-    }
-    return '-';
+    const date = new Date(dateTime);
+    date.setDate(date.getDate() + 1);
+    return date.toLocaleDateString(); 
 }
