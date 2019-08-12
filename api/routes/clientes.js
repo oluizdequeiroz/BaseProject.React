@@ -17,6 +17,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/refeicoes/:codigoCliente/:dataInicial/:dataFinal', (req, res, next) => {
+  const { codigoCliente, dataInicial, dataFinal } = req.params;
+
   models.cliente.findAll({
     include: [{
       model: models.refeicao,
@@ -25,9 +27,9 @@ router.get('/refeicoes/:codigoCliente/:dataInicial/:dataFinal', (req, res, next)
     where: {
       [models.Sequelize.Op.and]: [
         {
-          numsequencial: req.params.codigoCliente,
+          numsequencial: codigoCliente,
         },
-        models.Sequelize.literal(`dias.refdatarefeicao between '${req.params.dataInicial}' and '${req.params.dataFinal}'`)
+        models.Sequelize.literal(`dias.refdatarefeicao between '${dataInicial}' and '${dataFinal}'`)
       ]
     }
   })
@@ -37,23 +39,35 @@ router.get('/refeicoes/:codigoCliente/:dataInicial/:dataFinal', (req, res, next)
         dias: clientes[0].dias.groupBy('datarefeicao', 'refeicoes')
       } : { dias: [] };
 
-      let diasVazios = [];
-      const dataInicial = new Date(req.params.dataInicial);
-      const dataFinal = new Date(req.params.dataFinal);
-      let qtdDias = dataFinal.subtract(dataInicial);
+      let todosDias = [];
+      const dataInicialDate = new Date(dataInicial);
+      const dataFinalDate = new Date(dataFinal);
+      let qtdDias = dataFinalDate.subtract(dataInicialDate);
       qtdDias = qtdDias < 7 ? 7 : qtdDias;
-      const numDiasVazios = qtdDias - cliente.dias.length;
-      for (var i = 1; i <= numDiasVazios; i++) {
-        const date = numDiasVazios === qtdDias ? dataInicial : new Date(cliente.dias[cliente.dias.length - 1].datarefeicao);
-        date.setDate(dataInicial.getDate() + i + 1);
 
-        diasVazios.push({
+      for (var i = 0; i < qtdDias; i++) {
+        const date = new Date(dataInicialDate);
+        date.setDate(dataInicialDate.getDate() + i);
+
+        todosDias.push({
           datarefeicao: `${date.toISOString().substring(0, 10)}`
         });
       }
 
-      if (cliente.dias) cliente.dias.push(...diasVazios);
-      else cliente.dias = diasVazios;
+      cliente.dias.forEach(dia => {
+        todosDias = todosDias.map(diaVazio => {
+          if (diaVazio.datarefeicao === dia.datarefeicao) {
+            return {
+              datarefeicao: dia.datarefeicao,
+              refeicoes: dia.refeicoes
+            };
+          } else {
+            return diaVazio;
+          }
+        });        
+      });
+
+      cliente.dias = todosDias;
 
       res.json({
         sucesso: true,

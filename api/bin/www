@@ -116,5 +116,5 @@ Date.prototype.subtract = function (otherDate) {
 
   var diffMs = dateMsOne - dateMsTwo;
 
-  return Math.round(diffMs / oneDay);
+  return Math.round((diffMs / oneDay) + 1);
 };
