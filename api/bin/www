@@ -107,3 +107,14 @@ Array.prototype.groupBy = function (fieldKey, listName) {
     return field;
   });
 };
+
+Date.prototype.subtract = function (otherDate) {
+  var oneDay = 1000 * 60 * 60 * 24;
+
+  var dateMsOne = this.getTime();
+  var dateMsTwo = otherDate.getTime();
+
+  var diffMs = dateMsOne - dateMsTwo;
+
+  return Math.round(diffMs / oneDay);
+};
