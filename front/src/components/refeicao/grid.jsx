@@ -6,7 +6,7 @@ let count = 0;
 
 export default bindDefault('clienteComRefeicoes')(({ clienteComRefeicoes }) => {
 
-    return (
+    const clienteView = (
         <div style={{ marginTop: '40px', marginBottom: '50px' }}>
             {/* Grid para cardapio */}
             <div>
@@ -47,4 +47,7 @@ export default bindDefault('clienteComRefeicoes')(({ clienteComRefeicoes }) => {
             </div>
         </div>
     );
+
+    count = 0;
+    return clienteView;
 });
