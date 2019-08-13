@@ -53,7 +53,7 @@ module.exports = function (sequelize, DataTypes) {
 
   refeicao.associate = models => {
     refeicao.hasMany(models.itemrefeicao, {
-      as: 'refeicoes',
+      as: 'itemrefeicoes',
       foreignKey: 'refeicao'
     });
   };

@@ -2,6 +2,17 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models/index');
 
+/**
+ * @swagger
+ * /cliente:
+ *   get:
+ *     description: Retorna todos os clientes
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: objeto com uma lista de clientes
+ */
 router.get('/', (req, res, next) => {
   models.cliente.findAll({})
     .then(clientes => res.json({
@@ -16,6 +27,30 @@ router.get('/', (req, res, next) => {
     }))
 });
 
+/**
+ * @swagger
+ * /cliente/refeicoes/{codigoCliente}/{dataInicial}/{dataFinal}:
+ *   get:
+ *     description: Retorna cliente com lista de dias com suas respectivas refeições.
+ *     parameters:
+ *       - name: codigoCliente
+ *         in: path
+ *         required: true
+ *         type: integer
+ *       - name: dataInicial
+ *         in: path
+ *         required: true
+ *         type: string
+ *       - name: dataFinal
+ *         in: path
+ *         required: true
+ *         type: string
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: objeto com um cliente e seus dados referentes a refeições.
+ */
 router.get('/refeicoes/:codigoCliente/:dataInicial/:dataFinal', (req, res, next) => {
   const { codigoCliente, dataInicial, dataFinal } = req.params;
 
@@ -64,7 +99,7 @@ router.get('/refeicoes/:codigoCliente/:dataInicial/:dataFinal', (req, res, next)
           } else {
             return diaVazio;
           }
-        });        
+        });
       });
 
       cliente.dias = todosDias;
@@ -77,7 +112,67 @@ router.get('/refeicoes/:codigoCliente/:dataInicial/:dataFinal', (req, res, next)
     .then(error => res.json({
       stack: error,
       erros: [
-        "Erro na consulta do cliente."
+        "Erro na consulta das refeições do cliente."
+      ]
+    }));
+});
+
+/**
+ * @swagger
+ * /cliente/mapaproducao/{dataInicial}/{dataFinal}:
+ *   get:
+ *     description: Retorna o mapa de produção das refeições.
+ *     parameters:
+ *       - name: dataInicial
+ *         in: path
+ *         required: true
+ *         type: string
+ *       - name: dataFinal
+ *         in: path
+ *         required: true
+ *         type: string
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: objeto com clientes e seus dados referentes a refeições.
+ */
+router.get('/mapaproducao/:dataInicial/:dataFinal', (req, res, next) => {
+  const { dataInicial, dataFinal } = req.params;
+
+  models.cliente.findAll({
+    include: [{
+      model: models.refeicao,
+      as: 'dias',
+      include: [{
+        model: models.itemrefeicao,
+        as: 'itemrefeicoes',
+        include: [{
+          model: models.receita,
+          as: 'receita'
+        }]
+      }]
+    }],
+    where: {
+      [models.Sequelize.Op.and]: [
+        models.Sequelize.literal(`dias.refdatarefeicao between '${dataInicial}' and '${dataFinal}'`)
+      ]
+    }
+  })
+    .then(clientes => {
+      const _clientes = clientes && clientes.map(cliente => ({
+        ...cliente.dataValues, dias: cliente.dias.groupBy('datarefeicao', 'refeicoes')
+      }));
+
+      res.json({
+        sucesso: true,
+        retorno: _clientes
+      });
+    })
+    .then(error => res.json({
+      stack: error,
+      erros: [
+        "Erro na consulta das refeições do cliente."
       ]
     }));
 });

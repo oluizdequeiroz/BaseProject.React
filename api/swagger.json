@@ -1,0 +1,14 @@
+{
+    "swaggerDefinition": {
+        "info": {
+            "title": "NodeJS API",
+            "version": "1.0.0",
+            "description": "RESTful NodeJs API"
+        },
+        "host": "localhost:3300",
+        "basePath": "/"
+    },
+    "apis": [
+        "./routes/*.js"
+    ]
+}
