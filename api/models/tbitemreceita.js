@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('itemreceita', {
+  const itemreceita =  sequelize.define('itemreceita', {
     codigo: {
       field: 'itrnumsequencial',
       type: DataTypes.BIGINT,
@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DECIMAL,
       allowNull: true
     },
-    produto: {
+    produtoId: {
       field: 'itrproduto',
       type: DataTypes.BIGINT,
       allowNull: true,
@@ -41,4 +41,13 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     tableName: 'tbitemreceita'
   });
+
+  itemreceita.associate = models => {
+    itemreceita.hasOne(models.produto, {
+      as: 'produto',
+      foreignKey: 'codigo'
+    });
+  };
+
+  return itemreceita;
 };

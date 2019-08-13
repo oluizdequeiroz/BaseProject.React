@@ -38,7 +38,10 @@ module.exports = function (sequelize, DataTypes) {
   );
 
   receita.associate = models => {
-    receita.hasOne(models.itemreceita);
+    receita.hasMany(models.itemreceita, {
+      as: 'itemreceitas',
+      foreignKey: 'receita'
+    });
   };
 
   return receita;

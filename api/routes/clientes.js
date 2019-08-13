@@ -149,7 +149,15 @@ router.get('/mapaproducao/:dataInicial/:dataFinal', (req, res, next) => {
         as: 'itemrefeicoes',
         include: [{
           model: models.receita,
-          as: 'receita'
+          as: 'receita',
+          include: [{
+            model: models.itemreceita,
+            as: 'itemreceitas',
+            include: [{
+              model: models.produto,
+              as: 'produto'
+            }]
+          }]
         }]
       }]
     }],
