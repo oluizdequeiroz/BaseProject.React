@@ -17,7 +17,6 @@ export default () => (
                     <div className="col-md-12">
                         <hr />
                         <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-                            <div className="btn btn-success" ><i className="fa fa-save" /> Salvar</div>
                             <div className="btn btn-primary" ><i className="fa fa-print" /> Imprimir Cardápio</div>
                         </div>
                     </div>

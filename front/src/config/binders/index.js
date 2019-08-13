@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm, formValueSelector } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 
-const selects = reducerKeys => state => {
-    let reducers = {};
+const selects = (reducerKeys, form, ...formValues) => state => {
+    let reducers = {
+        formValues: form && formValueSelector(form)(state, formValues)
+    };
     reducerKeys.forEach(key => reducers[key] = state.reducers[key]);
     return reducers;
 };
@@ -29,7 +31,7 @@ export function bindReduxForm(...reducerKeys) {
         const selectDispatch = dispatch => bindActionCreators(_actions, dispatch);
 
         return (validate = undefined, warns = undefined) => {
-            return (formComponent) => {
+            return (formComponent, ...formValues) => {
                 const form = `${formComponent.name.toLowerCase()}Form`;
 
                 const createReduxForm = reduxForm({
@@ -39,7 +41,7 @@ export function bindReduxForm(...reducerKeys) {
                 });
 
                 formComponent = createReduxForm(formComponent);
-                return connect(selects(reducerKeys), selectDispatch)(formComponent);
+                return connect(selects(reducerKeys, form, formValues), selectDispatch)(formComponent);
             };
         };
     }

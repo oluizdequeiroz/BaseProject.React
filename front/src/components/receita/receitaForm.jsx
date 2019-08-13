@@ -49,8 +49,7 @@ export default bindReduxForm('receita', 'receitaRegistro')(register)(validate)((
             }
             setValue('receitaRegistro');
         }
-        // eslint-disable-next-line
-    }, [receitaRegistro]);
+    }, [dispatch, form, receita, receitaRegistro, get, setValue]);
 
     function voltar() {
         dispatch(initialize(form, receita));

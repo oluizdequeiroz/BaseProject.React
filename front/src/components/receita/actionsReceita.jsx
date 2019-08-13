@@ -16,8 +16,7 @@ export default bindDefault('receitaDel')(({ receita, setValue, del, receitaDel, 
             }
             setValue('receitaDel');
         }
-        // eslint-disable-next-line
-    }, [receitaDel]);
+    }, [receitaDel, get, setValue]);
 
     function editarReceita() {
         setValue('receitaRegistro');

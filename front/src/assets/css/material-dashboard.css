@@ -91,6 +91,7 @@
 }
 
 .gridDia .group-buttons {
+  z-index: 1;
   border-bottom: none;
 }
 
