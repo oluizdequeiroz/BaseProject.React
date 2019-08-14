@@ -1,19 +1,63 @@
-var express = require('express');
-var router = express.Router();
-var models = require('../models/index');
-var fetch = require('isomorphic-fetch');
+const express = require('express');
+const router = express.Router();
+const models = require('../models/index');
+const jwt = require('../utils/token').jwt;
 
+/**
+ * @swagger
+ * /usuario/login:
+ *   post:
+ *     description: Realiza login de usuário, gerando token
+ *     parameters:
+ *       - name: dados
+ *         in: body
+ *         required: true
+ *         schema:
+ *           type: object
+ *           required:
+ *             - usuario
+ *             - senha
+ *           properties:
+ *             usuario:
+ *               type: string
+ *             senha:
+ *               type: string
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: objeto com um token de sessão
+ */
 router.post('/login', (req, res, next) => {
-  fetch('http://alimentasolucoes.herokuapp.com/restApi/usuario/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(req.body)
+  const { usuario, senha } = req.body;
+
+  models.usuario.findAll({
+    where: {
+      nome: usuario,
+      senha
+    }
   })
-    .then(response => response.json())
-    .then(json => res.json(json))
-    .catch(error => res.json(error));
+    .then(([user]) => {
+      if (user) {
+        jwt.sign({ user }, '$alimenta$', (err, token) => {
+          res.json({
+            sucesso: true,
+            retorno: token
+          });
+        });
+      } else res.json({
+        stack: "Acesso não autorizado.",
+        erros: [
+          "Usuário não encontrado."
+        ]
+      });
+    })
+    .catch(error => res.json({
+      stack: error,
+      erros: [
+        "Acesso não autorizado."
+      ]
+    }));
 });
 
 router.get('/', (req, res, next) => {

@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var models = require('../models/index');
+const express = require('express');
+const router = express.Router();
+const models = require('../models/index');
+const verifyToken = require('../utils/token').verifyToken;
 
 /**
  * @swagger
@@ -51,7 +52,7 @@ router.get('/', (req, res, next) => {
  *       200:
  *         description: objeto com um cliente e seus dados referentes a refeições.
  */
-router.get('/refeicoes/:codigoCliente/:dataInicial/:dataFinal', (req, res, next) => {
+router.get('/refeicoes/:codigoCliente/:dataInicial/:dataFinal', verifyToken, (req, res, next) => {
   const { codigoCliente, dataInicial, dataFinal } = req.params;
 
   models.cliente.findAll({
