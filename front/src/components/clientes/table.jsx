@@ -1,12 +1,12 @@
 import React from 'react';
 import { bindDefault } from '../../config/binders';
 
-import BtnGroupActions from './actionsReceita';
+import BtnGroupActions from './actionsClientes';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
-export default bindDefault('receitas')(({ receitas, baseProps }) => {
+export default bindDefault('clientes')(({ clientes, baseProps }) => {
 
     const columns = [
         {
@@ -16,7 +16,7 @@ export default bindDefault('receitas')(({ receitas, baseProps }) => {
         },
         {
             dataField: 'nome',
-            text: 'Receita',
+            text: 'cliente',
             sort: true
         },
         {
@@ -26,22 +26,22 @@ export default bindDefault('receitas')(({ receitas, baseProps }) => {
         }
     ];
 
-    const _receitas = (receitas || []).map(receita => ({
-        ...receita,
-        actions: <BtnGroupActions receita={receita} />
+    const _clientes = (clientes || []).map(cliente => ({
+        ...cliente,
+        actions: <BtnGroupActions cliente={cliente} />
     }));
 
     const tableProps = {
         ...baseProps,
         keyField: "codigo",
-        data: _receitas,
+        data: _clientes,
         columns: columns
     };
 
     return <BootstrapTable
         striped
         condensed
-        noDataIndication={_receitas ? 'Não há receitas!' : <i className="fa fa-cog fa-2x fa-spin fa-fw" />}
+        noDataIndication={_clientes ? 'Não há clientes!' : <i className="fa fa-cog fa-2x fa-spin fa-fw" />}
         pagination={paginationFactory({
             sizePerPageList: [{
                 text: '5',
