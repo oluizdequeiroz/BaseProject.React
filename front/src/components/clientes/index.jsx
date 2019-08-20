@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import clienteTable from './table';
-import PesquisarclienteForm from "./pesquisarclienteForm";
-import clienteForm from "./clienteForm";
+import PesquisarClienteForm from "./pesquisarClienteForm";
+import ClienteForm from "./clienteForm";
 import { bindDefault } from '../../config/binders';
 
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';

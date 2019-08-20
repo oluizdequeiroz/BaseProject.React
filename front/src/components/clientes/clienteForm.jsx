@@ -3,11 +3,10 @@ import { Accordion, Card, Button, Row, Col } from 'react-bootstrap';
 import { bindReduxForm } from '../../config/binders';
 import { Field, initialize } from 'redux-form';
 import Input from '../divers/input';
-import ItensclienteTable from './itemcliente/itensclienteTable';
+
 import { post, setValue } from '../../config/actions';
 import swal from 'sweetalert2';
 
-import ModalBuscaProdutos from './itemcliente/modalBuscaProdutos';
 import { treatDefault as treatment } from '../../treatments';
 
 function register(values) {
@@ -92,7 +91,6 @@ export default bindReduxForm('cliente', 'clienteRegistro')(register)(validate)((
                             <Card.Body>
                                 {/* Ao clicar em pesquisar produto, abre um modal para pesquisar os produtos cadastrados e inserir na tabela abaixo */}
                                 <div className="btn btn-success" onClick={() => setShowModal(true)}><i className="fa fa-search" /> Pesquisar Produto</div>
-                                <ItensclienteTable />
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
@@ -100,7 +98,6 @@ export default bindReduxForm('cliente', 'clienteRegistro')(register)(validate)((
                 <div className="btn btn-ligth" onClick={voltar}><i className="fa fa-arrow-left" /> Voltar</div>
                 <button type="submit" className="btn btn-success"><i className="fa fa-save" /> Salvar</button>
             </form>
-            <ModalBuscaProdutos show={showModal} onHide={() => setShowModal(false)} />
         </div>
     );
 });

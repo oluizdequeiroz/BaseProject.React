@@ -22,7 +22,6 @@ class MapaProducao extends Component {
                     </div>
                 </div>
                 <div>
-                     <GerarMapa/>
                 </div>
             </div>
         );
