@@ -1,5 +1,8 @@
 import Home from './home';
 import Users from './users';
+import Produtos from './produtos';
+import Clientes from './clientes';
+import Fornecedores from './fornecedores';
 import Refeicoes from './refeicao';
 import Receitas from './receita';
 import MapaProducao from './mapaProducao';
@@ -17,6 +20,24 @@ export default [
         icon: 'users',
         name: 'Usuários',
         component: Users
+    },
+    {
+        path: '/clientes',
+        icon: 'users',
+        name: 'Clientes',
+        component: Clientes
+    },
+    {
+        path: '/produtos',
+        icon: 'users',
+        name: 'Produtos',
+        component: Produtos
+    },
+    {
+        path: '/fornecedores',
+        icon: 'users',
+        name: 'Fornecedores',
+        component: Fornecedores
     },
     {
         path: '/refeicoes',
