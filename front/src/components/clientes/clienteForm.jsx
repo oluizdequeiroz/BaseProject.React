@@ -67,16 +67,17 @@ export default bindReduxForm('cliente', 'clienteRegistro')(register)(validate)((
                             <Card.Body>
                                 <Row>
                                     <Col><Field name="nome" component={Input} type="text" placeholder="Nome da cliente" popoverPosition="top" /></Col>
-                                    <Col>
-                                        <Field name="unidademedida" component={Input} type="select" placeholder="Unidade de Medida" popoverPosition="top">
-                                            <option>KG</option>
-                                            <option>Litro</option>
-                                        </Field>
-                                    </Col>
-                                    <Col><Field name="quantidaderendimento" component={Input} type="text" placeholder="Quantidade de rendimento" popoverPosition="top" /></Col>
+                                    <Col><Field name="CPF" component={Input} type="text" placeholder="CPF da cliente" popoverPosition="top" /></Col>
+                                    <Col><Field name="cnpj" component={Input} type="text" placeholder="CNPJ da cliente" popoverPosition="top" /></Col>
+                                   
                                 </Row>
                                 <Row>
-                                    <Field name="modopreparo" component={Input} type="textarea" placeholder="Descreva o modo de preparo..." popoverPosition="bottom" />
+                                  <Col><Field name="representante" component={Input} type="text" placeholder="Representante do cliente" popoverPosition="top" /></Col>
+                                  <Col><Field name="valorRefeicao" component={Input} type="text" placeholder="Valor da Refeição" popoverPosition="top" /></Col>
+                                  <Col><Field name="qtdRefeicoes" component={Input} type="text" placeholder="Qtd Refeições" popoverPosition="top" /></Col>
+                                </Row>
+                                <Row>
+                                 <Col><Field name="contrato" component={Input} type="text" placeholder="Contrato do cliente" popoverPosition="top" /></Col>
                                 </Row>
                             </Card.Body>
                         </Accordion.Collapse>
@@ -84,13 +85,23 @@ export default bindReduxForm('cliente', 'clienteRegistro')(register)(validate)((
                     <Card>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                                ITENS DA cliente
+                               ENDEREÇO DA EMPRESA
                             </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="1">
                             <Card.Body>
-                                {/* Ao clicar em pesquisar produto, abre um modal para pesquisar os produtos cadastrados e inserir na tabela abaixo */}
-                                <div className="btn btn-success" onClick={() => setShowModal(true)}><i className="fa fa-search" /> Pesquisar Produto</div>
+                                <Row>
+                                    <Col><Field name="logradouro" component={Input} type="text" placeholder="Logradouro da cliente" popoverPosition="top" /></Col>
+                                    <Col><Field name="mumero" component={Input} type="text" placeholder="Nº" popoverPosition="top" /></Col>
+                                    <Col><Field name="complemento" component={Input} type="text" placeholder="Complemento" popoverPosition="top" /></Col>
+                                   
+                                </Row>
+                                <Row>
+                                    <Col><Field name="bairro" component={Input} type="text" placeholder="Bairro" popoverPosition="top" /></Col>
+                                    <Col><Field name="cep" component={Input} type="text" placeholder="CEP" popoverPosition="top" /></Col>
+                                    <Col><Field name="cidade" component={Input} type="text" placeholder="Cidade" popoverPosition="top" /></Col>
+                                    <Col><Field name="estado" component={Input} type="text" placeholder="Estado" popoverPosition="top" /></Col>
+                                </Row>
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>

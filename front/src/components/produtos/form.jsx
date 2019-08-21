@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindReduxForm } from '../../config/binders';
 import { Field, initialize } from 'redux-form';
+import { Row } from 'react-bootstrap';
 import Input from '../divers/input';
 import { post } from '../../config/actions';
 import swal from 'sweetalert2';
@@ -45,14 +46,17 @@ class ProdutoForm extends Component {
 
         return (
             <form onSubmit={handleSubmit}>
-                <div className="form-inline">
-                    <Field name="nome" component={Input} type="text" placeholder="Nome do Produto..." popoverPosition="top" />
-                    <Field name="unidademedida" component={Input} type="select" placeholder="Unidade de Medida" popoverPosition="top">
-                                            <option>KG</option>
-                                            <option>Litro</option>
-                                        </Field>
+                    <Row>
+                        <Field name="nome" component={Input} type="text" placeholder="Nome do Produto..." popoverPosition="top" />
+                    </Row>
+                    <Row>
+                        <Field name="fornecedor" component={Input} type="text" placeholder="Fornecedor do Produto..." popoverPosition="top" />
+                        <Field name="unidademedida" component={Input} type="select" placeholder="Unidade de Medida" popoverPosition="top">
+                                                <option>KG</option>
+                                                <option>Litro</option>
+                        </Field>
+                    </Row>
                     <div className="btn btn-warning" onClick={this.cancelar.bind(this)}>Cancelar</div>
-                </div>
                 <input type="submit" className="btn btn-primary btn-lg btn-block" value="Cadastrar" />
             </form>
         );

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import routes from '../routes';
 import { Link } from 'react-router-dom';
 
-const logo = require('../../assets/img/logoV2.png');
+const logo = require('../../assets/img/pmenosLogo.JPG');
 
 class Menu extends Component {
 

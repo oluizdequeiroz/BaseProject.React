@@ -29,7 +29,7 @@ class Produtos extends Component {
                     <div className="col-lg-8 col-md-8">
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title">Usuários do sistema</h4>
+                                <h4 className="card-title">Gerenciamento de produtos</h4>
                             </div>
                             <div className="card-body">
                                 <UsersTable />
@@ -39,7 +39,7 @@ class Produtos extends Component {
                     <div className="col-lg-4 col-md-4">
                         <div className="card">
                             <div className="card-header card-header-success">
-                                <h4 className="card-title">{produto ? 'Salvar' : 'Novo'} usuário</h4>
+                                <h4 className="card-title">{produto ? 'Salvar' : 'Novo'} produto</h4>
                             </div>
                             <div className="card-body">
                                 <UserForm key={produto && produto.codigo} cancelar={this.cancelar.bind(this)} />

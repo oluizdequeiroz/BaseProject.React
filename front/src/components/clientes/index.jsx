@@ -71,7 +71,7 @@ class Clientes extends Component {
                                 <h4 className="card-title">{(novoCliente || cliente) ? `${novoCliente ? 'Cadastrar' : 'Editar'} cliente` : 'Selecione um cliente acima ou clique em Novo cliente...'}</h4>
                             </div>
                             <div className="card-body">
-                                {(novoCliente || cliente) && <clienteForm key={cliente && cliente.codigo} cancelar={this.cancelar.bind(this)} onNovoCliente={this.setNovoCliente.bind(this)} />}
+                                {(novoCliente || cliente) && <ClienteForm key={cliente && cliente.codigo} cancelar={this.cancelar.bind(this)} onNovoCliente={this.setNovoCliente.bind(this)} />}
                             </div>
                         </div>
                     </div>

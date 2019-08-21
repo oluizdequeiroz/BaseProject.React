@@ -14,7 +14,12 @@ export default bindDefault('produtos')(({ produtos }) => {
         },
         {
             dataField: 'nome',
-            text: 'Usuário',
+            text: 'Produto',
+            sort: true
+        },
+        {
+            dataField: 'fornecedor',
+            text: 'Fornecedor',
             sort: true
         },
         {
